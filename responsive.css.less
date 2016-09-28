@@ -1,0 +1,334 @@
+// что бы не перебивать свойства классов сетки бутстрапа для не мобильных разрешений
+@media (max-width:767px) {
+	.view-portfolio {
+		.views-row {
+			float: none;
+			width: auto;
+			overflow: hidden;
+		}
+	}
+	.node-type-product .panels-flexible-column-last {
+		width: 100%;
+	}
+}
+
+@media screen and (min-width:768px) {
+	#tnd_portfolio_filters {
+		h2 {
+			float: left;
+			font-size: 16px;
+			max-width: 125px;
+			padding: 0 0 0 18px;
+			margin-top: 13px;
+		}
+		.form-item-1st-level  {
+			float: left;
+			width: 217px;
+			max-width: 217px;
+			margin-top: 10px;
+		}
+		#subcategory-wrapper {
+			float: left;
+			width: 217px;
+			max-width: 217px;
+			margin-top: 10px;
+			margin-bottom: 0;
+		}
+		.submit-wrapper {
+			float: left;
+			width: 53px;
+			padding: 0;
+			margin-top: 10px;
+			margin-bottom: 0;
+		}
+	}
+	.view-portfolio {
+		margin-top: 40px;
+
+		.full-height-wrapper {
+			position: relative;
+
+			.full-height {
+				position: absolute;
+				left: -200px;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				margin-right: -15px;
+				border-left: 1px solid @color-bg-grey;
+				border-bottom: 1px solid @color-bg-grey;
+			}
+
+			h3 {
+				float: right;
+				margin-bottom: 0;
+				display: block;
+			}
+		}
+		.row-height > div + div {
+			margin-top: 0;
+			padding-left: 30px;
+			padding-right: 0;
+		}
+		.views-row {
+			float: left;
+			border: 0;
+			width: 217px;
+			padding: 0;
+			margin: 0 0 40px 33px;
+			.views-field-field-image {
+				float: none;
+				width: auto;	      
+			}
+			.views-field-title {
+				position: static;
+				float: none;
+				width: auto;
+				border-width: 0 1px 0 1px;
+				min-height: 70px;
+				// padding: 18px 18px 12px;
+				a{
+					text-decoration: none;
+				}
+			}
+			.views-field-field-place {
+				position: static;
+				float: none;
+				width: auto;
+				border-width: 0 1px 1px;
+				// padding: 0 18px 18px;
+			}
+		}
+	}
+	.view-catalog {
+		h3 {
+			line-height: 40px;
+		}
+		.views-row {
+			.views-field-title {
+				padding: 16px;
+				font-size: 16px;
+			}
+			.views-field-field-sku {
+				padding: 0 16px 16px;
+			}
+		}
+	}
+	.view-categories {
+		.row-1st-level {
+			.views-field-name {
+				a {
+					padding: 0 20px 0 70px;
+				}
+			}
+			.views-row {
+				.views-field-name {
+					a {
+						padding-left: 95px;
+					}
+				}
+			}
+		}
+	}
+	#block-search-form {
+		margin-top: 0;
+	}
+	.front {
+		.catalog-main {
+			margin-top: 10px;
+		}
+	}
+	.view-news {
+		.views-row {
+			.views-field-title {
+				font-size: 18px;
+				line-height: 25px;
+				margin-top: 21px;
+			}
+			.views-field-created {
+				margin-top: 11px;
+			}
+		}
+	}
+}
+
+@media screen and (min-width:992px) {
+	.page-header {
+		margin-top: 36px;
+	}
+	#tnd_portfolio_filters {
+		h2 {
+			font-size: 18px;
+			max-width: none;
+			margin-top: 22px;
+		}
+		.form-item-1st-level  {
+			width: 294px;
+			max-width: 294px;
+		}
+		#subcategory-wrapper {
+			width: 294px;
+			max-width: 294px;
+		}
+		.submit-wrapper {
+			width: 67px;
+		}
+	}
+	.view-portfolio {
+		.full-height-wrapper {
+			.full-height {
+				left: 30px;
+				margin-right: 15px;
+			}
+		}
+		.row-height > div + div {
+			padding-left: 15px;
+			padding-right: 15px;
+
+			.row {
+				margin-bottom: -40px;
+			}
+		}
+		.views-row {
+			width: 33.33333333%;
+			padding: 0 15px;
+			margin: 0 0 40px;
+			&:hover {
+				background-color: transparent;
+				.views-field-title ,
+				.views-field-field-place {
+					background: @color-bg-grey; 
+				}
+			}
+		}
+	}
+	.collapsible-block {
+		.collapsible-list {
+			padding: 15px 0 !important;
+			position: static;
+			height: auto !important;
+			display: block !important;
+			margin: 0 !important;
+			background: none;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			-ms-border-radius: 0;
+			-o-border-radius: 0;
+			border-radius: 0;
+		}
+		.block-title {
+			background: none;
+			text-indent: 0;
+			font-size: 24px;
+			line-height: 40px;
+		}
+		&.open {
+			.block-title {
+				background: none;
+				color: @color-green;
+			}
+		}
+	}
+	.view-categories {
+		.row-1st-level {
+			position: relative;
+			.views-field-name {
+				padding: 0;
+				a {
+					padding: 0;
+					margin-right: 15px;
+					color: @color-green;
+				}
+			}
+			.views-field-view {
+				display: none;
+				position: absolute;
+				background: @color-green;
+				width: auto;
+				min-width: 300px;
+				left: 100%;
+				z-index: 3;
+				top: -30%;
+				padding: 10px 0;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				-ms-border-radius: 3px;
+				-o-border-radius: 3px;
+				border-radius: 3px;
+
+				.views-field-name {
+					a {
+						color: @color-white;
+						line-height: 40px;
+						padding: 0 20px;
+						margin: 0;
+						border-bottom: @border-green-light;
+					}
+				}
+				.views-row:last-child .views-field-name a {
+					border-bottom: 0px;
+				}
+			}
+			&:hover {
+				> .views-field-name {
+					a {
+						background: @color-bg-grey;
+						background: -moz-linear-gradient(left, @color-white 0%, @color-bg-grey 100%);
+						background: -webkit-linear-gradient(left, @color-white 0%, @color-bg-grey 100%);
+						background: -o-linear-gradient(left, @color-white 0%, @color-bg-grey 100%);
+						background: -ms-linear-gradient(left, @color-white 0%, @color-bg-grey 100%);
+						color: @color-red;
+						&:after {
+							content: "";
+							position: absolute;
+							right: 0;
+							top: 0;
+							width: 0; 
+							height: 0; 
+							border-top: 20px solid transparent;
+							border-bottom: 20px solid transparent;
+							border-left: 15px solid @color-bg-grey;
+						}
+					}
+				}
+				.views-field-view {
+					display: block;
+				}
+			}
+		}
+	}
+	#block-search-form {
+		position: absolute;
+		top: 45px;
+		right: 0;
+	}
+	.node-type-product {
+		.view-phones {
+			.views-row {
+				.finishes_label{
+					width: 162px;					
+				}
+			}
+		}
+	}
+	.front {
+		.catalog-main {
+			margin-top: 23px;
+		}
+		#block-search-form {
+			top: 20px;
+		}
+	}
+	.view-news {
+		.views-row {
+			.views-field-title {
+				font-size: 24px;
+				line-height: 30px;
+			}
+		}
+	}
+}
+
+@media screen and (min-width:1200px) {
+
+}
