@@ -850,6 +850,7 @@ p {
     float: none;
   }
   .flexslider {
+    display: none;
     background: none;
     border: none;
     margin: 0;
@@ -907,7 +908,7 @@ p {
     margin-top: 0;
     text-transform: uppercase;
   }
-  .view-phones {
+  .view-finishes {
     h3 {
       font-size: 14px;
       line-height: 40px;
@@ -919,7 +920,7 @@ p {
       overflow: hidden;
       margin-bottom: 11px;
 
-      .finishes_label{
+      .finishes-label{
         padding-top: 5px;
         padding-left: 6px;
         position: relative;
@@ -953,6 +954,8 @@ p {
         -o-border-radius: 5px 3px 3px 5px;
         border-radius: 5px 3px 3px 5px;
         img {
+          height: 60px;
+          width: auto;
           float: right;
         }
       }
@@ -1179,10 +1182,10 @@ p {
         left: 0;
         padding: 12px;
         background: @gradient-green-start;
-        background: -moz-linear-gradient(left, @gradient-green-start 0%, @gradient-green-end 100%);
-        background: -webkit-linear-gradient(left, @gradient-green-start 0%, @gradient-green-end 100%);
-        background: -o-linear-gradient(left, @gradient-green-start 0%, @gradient-green-end 100%);
-        background: -ms-linear-gradient(left, @gradient-green-start 0%, @gradient-green-end 100%);
+        background: -moz-linear-gradient(45deg, @gradient-green-start 0%, @gradient-green-end 100%);
+        background: -webkit-linear-gradient(45deg, @gradient-green-start 0%, @gradient-green-end 100%);
+        background: -o-linear-gradient(45deg, @gradient-green-start 0%, @gradient-green-end 100%);
+        background: -ms-linear-gradient(45deg, @gradient-green-start 0%, @gradient-green-end 100%);
         .views-field-title {
           color: #fff;
           font-family: Raleway;
@@ -1254,7 +1257,29 @@ p {
   }
 }
 
+.node-type-protfolio {
+  .node-protfolio {
+    .field-type-image {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    img {
+      max-width: 100%;
+    }
+  }
+}
 
+.node-type-news {
+  .node-news {
+     .field-type-image {
+      img {
+        width: 100%;
+      }
+     }
+  }
+}
 
 // css
 
@@ -1308,6 +1333,6 @@ p {
 }
 
 
-.panels-flexible-region {
-  width: 100%;
-}
+// .panels-flexible-region {
+//   width: 100%;
+// }
