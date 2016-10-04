@@ -191,6 +191,42 @@ p {
     text-decoration: none;
   }
 }
+.basic-cart-add-to-cart-link {
+  &:before {
+    background: @image-icons no-repeat 3px -160px;
+  }
+  &:hover:before {
+    background-position: -45px -160px;
+  }
+}
+.ask-button {
+  &:after {
+    content: "?";
+    position: absolute;
+    left: 17px;
+    top: 13px;
+    width: 15px;
+    height: 15px;
+    z-index: 2;
+    background: @color-white;
+    color: @color-green;
+    line-height: 16px;
+    font-size: 12px;
+    font-family: Raleway;
+    text-indent: 1px;
+    font-weight: 700;
+    text-align: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+  }
+  &:hover:after {
+    background: @color-lighter-green;
+    color: @color-white;
+  }
+}
 
 .region-sidebar-first {
   padding: 0;
@@ -650,7 +686,7 @@ p {
 }
 .view-categories {
   .row-1st-level {
-    .views-field-name {
+    .views-field-name-i18n {
       padding: 0;
       a {
         display: block;
@@ -668,7 +704,7 @@ p {
       }
     }
     .views-row {
-      .views-field-name {
+      .views-field-name-i18n {
         a {
           font-size: 14px;
           line-height: 35px;
@@ -850,10 +886,9 @@ p {
     float: none;
   }
   .flexslider {
-    display: none;
     background: none;
     border: none;
-    margin: 0;
+    margin: 45px 0 50px;
     width: 100%;
     height: auto;
     -webkit-border-radius: 3px;
@@ -870,6 +905,87 @@ p {
 
         &.flex-active-slide {
           display: block !important;
+        }
+      }
+    }
+    // .views-field-field-gallery {
+    //   -webkit-border-radius: 3px;
+    //   -moz-border-radius: 3px;
+    //   -ms-border-radius: 3px;
+    //   -o-border-radius: 3px;
+    //   border-radius: 3px;
+    // }
+    img {
+      max-height: 400px;
+      max-width: 100%;
+      width: auto;
+      float: right;
+      border: 1px solid @color-white;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+    }
+    .flex-control-paging {
+      text-align: right;
+      font-size: 0;
+      bottom: -25px;
+      padding-right: 55px !important;
+      li {
+        padding-left: 10px !important;
+        a {
+          width: 8px;
+          height: 8px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+          border-radius: 50%;
+          border: 1px solid @color-white;
+          background-color: transparent;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+
+          &.flex-active {
+            background: @color-white;
+          }
+        }
+      }
+    }
+    .flex-direction-nav {
+      .flex-nav-prev {
+        display: none;
+      }
+      .flex-nav-next {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+
+        a {
+          background: @image-icons no-repeat -156px -30px;
+          display: block;
+          opacity: 1 !important;
+          right: 10px !important;
+          top: auto;
+          bottom: 10px;
+          width: 35px;
+          height: 35px;
+          font-size: 0px;
+          border: 3px solid @color-white;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+          border-radius: 50%;
+          &:before {
+            display: none;
+          }
+          &:hover {
+            background-position: -78px -30px;
+          }
         }
       }
     }
@@ -965,8 +1081,9 @@ p {
     .views-row {
       margin-bottom: 60px;
       img {
-        width: 100%;
-        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;        
       }
     }
   }
@@ -1273,12 +1390,12 @@ p {
 
 .node-type-news {
   .node-news {
-     .field-type-image {
-      img {
-        width: 100%;
-      }
-     }
+   .field-type-image {
+    img {
+      width: 100%;
+    }
   }
+}
 }
 
 // css
