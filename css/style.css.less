@@ -138,6 +138,13 @@ p {
   margin-bottom: 30px;
 }
 
+.h1-bread-wrapper {
+  min-height: 0;
+}
+.navbar-header {
+  float: none;
+}
+
 .form-submit {
 
 }
@@ -155,7 +162,6 @@ p {
   position: relative;
   display: block;
   width: 100%;
-  max-width: 290px;
   padding-left: 70px;
   color: @color-white;
   background: @color-green;
@@ -870,6 +876,10 @@ p {
 
 
 .node-type-product {
+  h1 {
+    margin-top: 24px;
+    margin-bottom: 6px;
+  }
   .panel-separator {
     display: none;
   }
@@ -878,17 +888,11 @@ p {
     float: none;
     overflow: hidden;
     background: @color-bg-grey;
-    .container {
-      margin: 0 auto;
-    }
-  }
-  .panels-flexible-column-last {
-    float: none;
   }
   .flexslider {
     background: none;
     border: none;
-    margin: 45px 0 50px;
+    margin: 35px 0 45px;
     width: 100%;
     height: auto;
     -webkit-border-radius: 3px;
@@ -908,18 +912,9 @@ p {
         }
       }
     }
-    // .views-field-field-gallery {
-    //   -webkit-border-radius: 3px;
-    //   -moz-border-radius: 3px;
-    //   -ms-border-radius: 3px;
-    //   -o-border-radius: 3px;
-    //   border-radius: 3px;
-    // }
     img {
-      max-height: 400px;
-      max-width: 100%;
-      width: auto;
-      float: right;
+      width: 100%;
+      height: auto;
       border: 1px solid @color-white;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -1011,6 +1006,13 @@ p {
   }
   .field-name-field-sku {
     .h4;
+    margin-bottom: 13px;
+  }
+  .pane-node-body {
+    margin-top: 20px;
+    ul {
+      margin-bottom: 0 !important;
+    }
   }
   .product-buttons-wrapper {
     .views-field-nothing,
@@ -1024,66 +1026,84 @@ p {
     margin-top: 0;
     text-transform: uppercase;
   }
-  .view-finishes {
-    h3 {
-      font-size: 14px;
-      line-height: 40px;
-      font-weight: 600;
-      text-transform: uppercase;
+  .pane-finishes {
+    h2 {
+      margin-top: 29px;
+      margin-bottom: 3px;
     }
-    .views-row {
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 11px;
-
-      .finishes-label{
-        padding-top: 5px;
-        padding-left: 6px;
-        position: relative;
-        height: 40px;
-        width: 50%;
-        float: left;
-        z-index: 2;
-        background: @color-bg-grey;
+    .view-finishes {
+      h3 {
+        margin-top: 3px;
+        margin-bottom: 4px;
         font-size: 14px;
-        line-height: 15px;
-        font-weight: 200;
-        color: @color-green;
-        border-right: 1px solid @color-white;
-        -webkit-border-radius: 3px 0 0 3px;
-        -moz-border-radius: 3px 0 0 3px;
-        -ms-border-radius: 3px 0 0 3px;
-        -o-border-radius: 3px 0 0 3px;
-        border-radius: 3px 0 0 3px;
+        line-height: 40px;
+        font-weight: 600;
+        text-transform: uppercase;
       }
-      .views-field-field-image {
-        position: absolute;
-        height: 40px;
-        width: 100%;
-        right: 0;
-        top: 0;
+      .views-row {
+        position: relative;
         overflow: hidden;
-        z-index: 1;
-        -webkit-border-radius: 5px 3px 3px 5px;
-        -moz-border-radius: 5px 3px 3px 5px;
-        -ms-border-radius: 5px 3px 3px 5px;
-        -o-border-radius: 5px 3px 3px 5px;
-        border-radius: 5px 3px 3px 5px;
-        img {
-          height: 60px;
-          width: auto;
-          float: right;
+        margin-bottom: 11px;
+
+        .finishes-label{
+          padding-top: 5px;
+          padding-left: 6px;
+          position: relative;
+          height: 40px;
+          width: 50%;
+          float: left;
+          z-index: 2;
+          background: @color-bg-grey;
+          font-size: 14px;
+          line-height: 15px;
+          font-weight: 200;
+          color: @color-green;
+          border-right: 1px solid @color-white;
+          -webkit-border-radius: 3px 0 0 3px;
+          -moz-border-radius: 3px 0 0 3px;
+          -ms-border-radius: 3px 0 0 3px;
+          -o-border-radius: 3px 0 0 3px;
+          border-radius: 3px 0 0 3px;
+          .views-field-field-abbrevation {
+            text-transform: uppercase;
+          }
+        }
+        .views-field-field-image {
+          position: absolute;
+          height: 40px;
+          width: 100%;
+          right: 0;
+          top: 0;
+          overflow: hidden;
+          z-index: 1;
+          -webkit-border-radius: 5px 3px 3px 5px;
+          -moz-border-radius: 5px 3px 3px 5px;
+          -ms-border-radius: 5px 3px 3px 5px;
+          -o-border-radius: 5px 3px 3px 5px;
+          border-radius: 5px 3px 3px 5px;
+          img {
+            height: 60px;
+            width: auto;
+            float: right;
+          }
         }
       }
     }
   }
   .product-schemas {
     .views-row {
+      margin-top: 30px;
       margin-bottom: 60px;
       img {
+        border: 2px solid @color-bg-grey;
         margin-left: auto;
         margin-right: auto;
-        max-width: 100%;        
+        max-width: 100%;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;
       }
     }
   }
@@ -1440,8 +1460,7 @@ p {
 .panels-flexible-column.container,
 .panels-flexible-row.container {
   float: none;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding: 0 15px;
   margin-right: auto;
   margin-left: auto;
   width: 100%;
@@ -1449,8 +1468,7 @@ p {
 .row .panels-flexible-row.container-fluid ,
 .panels-flexible-column.container-fluid ,
 .panels-flexible-row.container-fluid {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding: 0 15px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -1464,7 +1482,15 @@ p {
   margin-left: -15px;
   padding: 0;
 }
-
+.row .panels-flexible-row.col-xs-1, .row .panels-flexible-row.col-sm-1, .row .panels-flexible-row.col-md-1, .row .panels-flexible-row.col-lg-1, .row .panels-flexible-row.col-xs-2, .row .panels-flexible-row.col-sm-2, .row .panels-flexible-row.col-md-2, .row .panels-flexible-row.col-lg-2, .row .panels-flexible-row.col-xs-3, .row .panels-flexible-row.col-sm-3, .row .panels-flexible-row.col-md-3, .row .panels-flexible-row.col-lg-3, .row .panels-flexible-row.col-xs-4, .row .panels-flexible-row.col-sm-4, .row .panels-flexible-row.col-md-4, .row .panels-flexible-row.col-lg-4, .row .panels-flexible-row.col-xs-5, .row .panels-flexible-row.col-sm-5, .row .panels-flexible-row.col-md-5, .row .panels-flexible-row.col-lg-5, .row .panels-flexible-row.col-xs-6, .row .panels-flexible-row.col-sm-6, .row .panels-flexible-row.col-md-6, .row .panels-flexible-row.col-lg-6, .row .panels-flexible-row.col-xs-7, .row .panels-flexible-row.col-sm-7, .row .panels-flexible-row.col-md-7, .row .panels-flexible-row.col-lg-7, .row .panels-flexible-row.col-xs-8, .row .panels-flexible-row.col-sm-8, .row .panels-flexible-row.col-md-8, .row .panels-flexible-row.col-lg-8, .row .panels-flexible-row.col-xs-9, .row .panels-flexible-row.col-sm-9, .row .panels-flexible-row.col-md-9, .row .panels-flexible-row.col-lg-9, .row .panels-flexible-row.col-xs-10, .row .panels-flexible-row.col-sm-10, .row .panels-flexible-row.col-md-10, .row .panels-flexible-row.col-lg-10, .row .panels-flexible-row.col-xs-11, .row .panels-flexible-row.col-sm-11, .row .panels-flexible-row.col-md-11, .row .panels-flexible-row.col-lg-11, .row .panels-flexible-row.col-xs-12, .row .panels-flexible-row.col-sm-12, .row .panels-flexible-row.col-md-12, .row .panels-flexible-row.col-lg-12,
+.row .panels-flexible-region.col-xs-1, .row .panels-flexible-region.col-sm-1, .row .panels-flexible-region.col-md-1, .row .panels-flexible-region.col-lg-1, .row .panels-flexible-region.col-xs-2, .row .panels-flexible-region.col-sm-2, .row .panels-flexible-region.col-md-2, .row .panels-flexible-region.col-lg-2, .row .panels-flexible-region.col-xs-3, .row .panels-flexible-region.col-sm-3, .row .panels-flexible-region.col-md-3, .row .panels-flexible-region.col-lg-3, .row .panels-flexible-region.col-xs-4, .row .panels-flexible-region.col-sm-4, .row .panels-flexible-region.col-md-4, .row .panels-flexible-region.col-lg-4, .row .panels-flexible-region.col-xs-5, .row .panels-flexible-region.col-sm-5, .row .panels-flexible-region.col-md-5, .row .panels-flexible-region.col-lg-5, .row .panels-flexible-region.col-xs-6, .row .panels-flexible-region.col-sm-6, .row .panels-flexible-region.col-md-6, .row .panels-flexible-region.col-lg-6, .row .panels-flexible-region.col-xs-7, .row .panels-flexible-region.col-sm-7, .row .panels-flexible-region.col-md-7, .row .panels-flexible-region.col-lg-7, .row .panels-flexible-region.col-xs-8, .row .panels-flexible-region.col-sm-8, .row .panels-flexible-region.col-md-8, .row .panels-flexible-region.col-lg-8, .row .panels-flexible-region.col-xs-9, .row .panels-flexible-region.col-sm-9, .row .panels-flexible-region.col-md-9, .row .panels-flexible-region.col-lg-9, .row .panels-flexible-region.col-xs-10, .row .panels-flexible-region.col-sm-10, .row .panels-flexible-region.col-md-10, .row .panels-flexible-region.col-lg-10, .row .panels-flexible-region.col-xs-11, .row .panels-flexible-region.col-sm-11, .row .panels-flexible-region.col-md-11, .row .panels-flexible-region.col-lg-11, .row .panels-flexible-region.col-xs-12, .row .panels-flexible-region.col-sm-12, .row .panels-flexible-region.col-md-12, .row .panels-flexible-region.col-lg-12 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.inside-auto-row > .inside {
+  margin-right: -15px;
+  margin-left: -15px;
+}
 @media (min-width: 768px) {
   .row-sm-height {
     display: table;

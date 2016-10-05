@@ -4,6 +4,13 @@
 	$(function(){
 		$('#block-views-categories-block').collapsibleMenu();
 		$('#block-categories-main').collapsibleMenu();
+		calcMenuPaddings();
+	});
+	$(window).load(function() {
+		calcMenuPaddings();
+	});
+	$(window).resize(function(event) {
+		calcMenuPaddings();
 	});
 
 	$.fn.collapsibleMenu = function() {
@@ -33,6 +40,23 @@
 
 		}
 		return this;
+	}
+
+	function calcMenuPaddings() {
+		var menu = $('#main-menu-wrapper'),
+			menuContainer = menu.find('.container'),
+			elements = menu.find('li a');
+
+		var allWidth = 0,
+			contWidth = menuContainer.width();
+		for (var i = elements.length - 1; i >= 0; i--) {
+			allWidth += $(elements[i]).width();
+		}
+		var newPadding = ((contWidth - allWidth) / elements.length / 2) -1 ;
+		elements.css({
+			'padding-left': newPadding,
+			'padding-right': newPadding
+		});
 	}
 
 })(jQuery);
