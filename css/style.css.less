@@ -1267,6 +1267,9 @@ p {
       }
     }
   }
+  .panels-flexible-region-4-portfolio {
+    width: 100%;
+  }
   .view-portfolio {
     position: relative;
     .slick__slide {
@@ -1390,6 +1393,85 @@ p {
   #block-views-catalog-block-1 {
     .block-title {
       .h2;
+    }
+  }
+  .panels-flexible-region-4-design {
+    width: 100%;
+  }
+  .design-row {
+    background: @gradient-green-start;
+    background: -moz-linear-gradient(45deg, @gradient-green-start 0%, @gradient-green-end 100%);
+    background: -webkit-linear-gradient(45deg, @gradient-green-start 0%, @gradient-green-end 100%);
+    background: -o-linear-gradient(45deg, @gradient-green-start 0%, @gradient-green-end 100%);
+    background: -ms-linear-gradient(45deg, @gradient-green-start 0%, @gradient-green-end 100%);
+    color: @color-white;
+    padding-bottom: 40px;
+    margin-bottom: 5px;
+    
+    h2 {
+      .h1;
+      margin-top: 30px;
+      margin-bottom: -5px;
+      color: @color-white !important;
+    }
+    .readmore {
+      color: @color-white;
+    }
+    .design-gray {
+      .number-1,
+      .number-2 {
+        width: 49px;
+        height: 49px;
+        display: inline-block;
+        margin-top: 35px;
+        margin-right: 25px;
+        margin-bottom: 29px;
+        padding-top: 13px;
+        padding-left: 13px;
+        float: left;
+        background: @color-white;
+        font-family: "Source Sans Pro";
+        color: @color-green;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 30px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;
+      }
+      h3 {
+        margin-top: 36px;
+        margin-bottom: 0;
+        font-size: 18px;
+        line-height: 25px;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: @color-white;
+      }
+      .img-wrapper {
+        margin-bottom: 26px;
+        clear: left;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .buttons-row {
+    padding: 80px 0;
+    background: url(../images/bg-box.png) repeat 50% 0;
+    
+    .button-wrapper {
+      border: 11px solid @color-bg-grey;
+      .button-gray {
+        display: block;
+        height: 54px;
+        width: 100%;
+        border: 3px solid @color-white;
+        background: @color-bg-grey;
+      }
     }
   }
 }
