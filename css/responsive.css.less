@@ -1,6 +1,6 @@
 // что бы не перебивать свойства классов сетки бутстрапа для не мобильных разрешений
 @media (max-width:767px) {
-	.view-portfolio {
+	.portfolio-views-wrapper {
 		.views-row {
 			float: none;
 			width: auto;
@@ -17,6 +17,14 @@
 	}
 	#block-locale-language {
 		padding: 0;
+	}
+	.footer {
+		.region-footer {
+			padding-top: 20px;
+		}
+		.second-col {
+			position: static;
+		}
 	}
 	#tnd_portfolio_filters {
 		h2 {
@@ -47,7 +55,7 @@
 			margin-bottom: 0;
 		}
 	}
-	.view-portfolio {
+	.portfolio-views-wrapper {
 		margin-top: 40px;
 
 		.full-height-wrapper {
@@ -228,6 +236,10 @@
 	.page-header {
 		margin-top: 36px;
 	}
+	.node-type-news .sidebar-second-wrapper,
+	.node-type-protfolio .sidebar-second-wrapper {
+		display: block;
+	}
 	#tnd_portfolio_filters {
 		h2 {
 			font-size: 18px;
@@ -246,7 +258,7 @@
 			width: 67px;
 		}
 	}
-	.view-portfolio {
+	.portfolio-views-wrapper {
 		.full-height-wrapper {
 			.full-height {
 				left: 30px;

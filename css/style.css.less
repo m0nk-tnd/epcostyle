@@ -237,6 +237,45 @@ p {
   }
 }
 
+.footer {
+  position: relative;
+  margin-top: 25px;
+  padding-top: 0;
+  padding-bottom: 20px;
+  border: 0;
+
+  .region-footer {
+    padding-top: 50px;
+    border-top: 10px solid @color-green;
+  }
+  span, a {
+    font-family: Raleway;
+    font-weight: 400;
+    line-height: 20px;
+    font-size: 12px;
+    color: @color-green;
+  }
+  .first-col {
+    a {
+      padding-left: 2px;
+    }
+  }
+  .second-col {
+    position: absolute;
+    top: 25px;
+    padding: 0;
+    span {
+      font-size: 16px;
+    }
+  }
+  .third-col {
+    text-align: right;
+    span {
+      padding-right: 2px;
+    }
+  }
+}
+
 
 .basic-cart-add-to-cart-link {
   &:before {
@@ -405,11 +444,34 @@ p {
     display: inline-block;
 
     a{
+      background: url(../images/social-icons.png) no-repeat 0px 0px;
+      background-size: 125px;
       border: @border-green-light;
       display: block;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       font-size: 0;
+    }
+    &.social-1 a {
+      background-position: -4px 2px;
+    }
+    &.social-in a {
+      background-position: -22px 2px;
+    }
+    &.social-2 a {
+      background-position: -40px 2px;
+    }
+    &.social-3 a {
+      background-position: -56px 2px;
+    }
+    &.social-insta a {
+      background-position: -73px 2px;
+    }
+    &.social-twitter a {
+      background-position: -90px 2px;
+    }
+    &.social-fb a {
+      background-position: -107px 2px;
     }
   }
 }
@@ -539,7 +601,7 @@ p {
 }
 
 /******* Portfolio **********/
-.view-portfolio {
+.portfolio-views-wrapper {
   margin-top: 40px;
 
   .group {
@@ -1311,7 +1373,7 @@ p {
   .panels-flexible-region-4-portfolio {
     width: 100%;
   }
-  .view-portfolio {
+  .portfolio-views-wrapper {
     position: relative;
     .slick__slide {
       position: relative;
@@ -1643,6 +1705,34 @@ p {
   }
 }
 
+.node-type-news .sidebar-second-wrapper,
+.node-type-protfolio .sidebar-second-wrapper {
+  display: none;
+}
+#block-views-catalog-block-3,
+#block-views-portfolio-block-3 {
+  h2 {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+.portfolio-views-wrapper.portfolio-last-proj {
+  margin-top: 20px;
+  .views-row {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+}
+.view-portfolio.portfolio-gallery {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  .views-row {
+    margin-bottom: 20px;
+  }
+}
 
 // css
 
