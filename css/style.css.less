@@ -197,6 +197,47 @@ p {
     text-decoration: none;
   }
 }
+
+#logo-wrapper {
+  .logo {
+    display: block;
+    width: 50%;
+    min-width: 55px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+#block-locale-language {
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      padding: 0;
+      list-style: none;
+      display: inline-block;
+      margin-right: 18px;
+      a {
+        color: @color-white;
+        font-size: 14px;
+        line-height: 40px;
+        text-decoration: none;
+        border-bottom: 4px solid transparent;
+        padding-bottom: 4px;
+        &.active {
+          border-color: @color-light-green;
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+
 .basic-cart-add-to-cart-link {
   &:before {
     background: @image-icons no-repeat 3px -160px;
@@ -1460,17 +1501,35 @@ p {
     }
   }
   .buttons-row {
-    padding: 80px 0;
+    padding: 81px 0 40px;
     background: url(../images/bg-box.png) repeat 50% 0;
     
-    .button-wrapper {
-      border: 11px solid @color-bg-grey;
+    .btn-wrapper {
+      border: 10px solid @color-bg-grey;
+      margin-bottom: 40px;
       .button-gray {
         display: block;
-        height: 54px;
+        height: 60px;
         width: 100%;
         border: 3px solid @color-white;
         background: @color-bg-grey;
+        font-family: Raleway;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 18px;
+        line-height: 54px;
+        text-decoration: none;
+        text-align: center;
+        -webkit-transition: background 0.5s, color 0.5s;
+        -o-transition: background 0.5s, color 0.5s;
+        transition: background 0.5s, color 0.5s;
+
+        &:hover,
+        &:hover,
+         {
+          background: @color-green;
+          color: @color-lighter-green;
+        }
       }
     }
   }
