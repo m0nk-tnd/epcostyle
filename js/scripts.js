@@ -5,6 +5,7 @@
 		$('#block-views-categories-block').collapsibleMenu();
 		$('#block-categories-main').collapsibleMenu();
 		calcMenuPaddings();
+		$('select').selectBox('destroy').selectBox({mobile: true});
 	});
 	$(window).load(function() {
 		calcMenuPaddings();

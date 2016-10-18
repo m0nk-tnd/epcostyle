@@ -30,20 +30,22 @@
 		h2 {
 			float: left;
 			font-size: 16px;
-			max-width: 125px;
+			width: 125px;
 			padding: 0 0 0 18px;
 			margin-top: 13px;
 		}
 		.form-item-1st-level  {
 			float: left;
-			width: 217px;
-			max-width: 217px;
+			width: 250px;
+			max-width: 250px;
 			margin-top: 10px;
+			padding: 0 0 0 33px;
 		}
 		#subcategory-wrapper {
 			float: left;
-			width: 217px;
-			max-width: 217px;
+			width: 250px;
+			max-width: 250px;
+			padding: 0 0 0 33px;
 			margin-top: 10px;
 			margin-bottom: 0;
 		}
@@ -51,6 +53,7 @@
 			float: left;
 			width: 53px;
 			padding: 0;
+			margin-left: 33px;
 			margin-top: 10px;
 			margin-bottom: 0;
 		}
@@ -230,6 +233,31 @@
 }
 
 @media screen and (min-width:992px) {
+	.node-type-news .main-container > .row > .col-xs-12.col-md-9,
+	.node-type-protfolio .main-container > .row > .col-xs-12.col-md-9 {
+		position: static;
+	}
+	.node-type-news .main-container,
+	.node-type-protfolio .main-container {
+		position: relative;
+	}
+	.main-container
+	.news-header {
+		width: 25%;
+		position: absolute;
+		padding: 0 15px;
+		right: 0;
+		top: 40px;
+		padding-bottom: 0;
+		.post-date {
+			display: block;
+			padding-right: 0;
+			padding-bottom: 5px;
+		}
+		.place {
+			display: block;
+		}
+	}
 	#block-locale-language {
 		padding: 15px;
 	}
