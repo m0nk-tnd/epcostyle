@@ -17,17 +17,17 @@
 	$.fn.collapsibleMenu = function() {
 		if(this.size()){
 			var menuBlock = this,
-				triggerEl = this.find('.block-title:eq(0)'),
-				colapsibleEl = this.find('.view-categories:eq(0)');
+			triggerEl = this.find('.block-title:eq(0)'),
+			colapsibleEl = this.find('.view-categories:eq(0)');
 
 			menuBlock.addClass('collapsible-block');
 			colapsibleEl.addClass('collapsible-list collapsed').slideToggle(400);
 
 			triggerEl.before('<button type="button" class="visible-xs visible-sm" id="collapsible-menu-btn">\
-	            <span class="icon-bar"></span>\
-	            <span class="icon-bar"></span>\
-	            <span class="icon-bar"></span>\
-	          </button>');
+				<span class="icon-bar"></span>\
+				<span class="icon-bar"></span>\
+				<span class="icon-bar"></span>\
+				</button>');
 			var button = this.find('#collapsible-menu-btn');
 
 			triggerEl.on('click', function() {
@@ -45,19 +45,26 @@
 
 	function calcMenuPaddings() {
 		var menu = $('#main-menu-wrapper'),
-			menuContainer = menu.find('.container'),
-			elements = menu.find('li a');
-
-		var allWidth = 0,
+		menuContainer = menu.find('.container'),
+		elements = menu.find('li a');
+		if($(window).width() > 767){
+			var allWidth = 0,
 			contWidth = menuContainer.width();
-		for (var i = elements.length - 1; i >= 0; i--) {
-			allWidth += $(elements[i]).width();
+			for (var i = elements.length - 1; i >= 0; i--) {
+				allWidth += $(elements[i]).width();
+			}
+			var newPadding = ((contWidth - allWidth) / elements.length / 2) -1 ;
+			elements.css({
+				'padding-left': newPadding,
+				'padding-right': newPadding
+			});
 		}
-		var newPadding = ((contWidth - allWidth) / elements.length / 2) -1 ;
-		elements.css({
-			'padding-left': newPadding,
-			'padding-right': newPadding
-		});
+		else {
+			elements.css({
+				'padding-left': 0,
+				'padding-right': 0
+			});
+		}
 	}
 
 })(jQuery);

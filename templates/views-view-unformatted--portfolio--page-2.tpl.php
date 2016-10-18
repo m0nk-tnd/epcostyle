@@ -17,7 +17,7 @@
 				</div>
 			</div>
 		<?php endif; ?>
-		<div class="col-sm-height col-xs-12 col-sm-7 col-md-9">
+		<div class="col-sm-height col-xs-12 col-sm-8 col-md-9">
 			<div class="row">
 				<?php foreach ($rows as $id => $row): ?>
 					<div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>

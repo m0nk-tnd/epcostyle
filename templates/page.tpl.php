@@ -109,10 +109,10 @@
                 <span class="icon-bar"></span>
               </button>
             </div>
-            <p><?php print t('Site menu'); ?></p>
+            <p class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><?php print t('Site menu'); ?></p>
           </div>
 
-          <div class="navbar-collapse collapse hidden-xs hidden-sm">
+          <div class="navbar-collapse collapse">
             <nav role="navigation">
               <?php if (!empty($primary_nav)): ?>
                 <?php print render($primary_nav); ?>

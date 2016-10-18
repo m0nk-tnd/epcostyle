@@ -362,7 +362,7 @@ p {
 
 #navbar {
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   background: @gradient-green-start;
   background: -moz-linear-gradient(left, @gradient-green-start 0%, @gradient-green-end 100%);
   background: -webkit-linear-gradient(left, @gradient-green-start 0%, @gradient-green-end 100%);
@@ -461,17 +461,22 @@ p {
 
   li {
     border-right: @border-green-light;
+    display: block;
+    float: none;
 
     &.first {
       border-left: @border-green-light;
     }
 
     a {
+      text-indent: 38px;
+      padding: 0;
       font-family: Raleway;
       font-weight: 700;
       font-size: 16px;
       line-height: 40px;
       color: @color-white;
+      text-transform: uppercase;
       text-decoration: none;
       background-color: transparent;
       -webkit-transition: color 0.5s;
@@ -484,15 +489,82 @@ p {
     }
   }
   .button-container {
-    p {
-      float: left;
+    p.navbar-toggle {
+      display: block;
+      margin: 0 15px;
+      padding: 10px 0;
+      text-indent: 38px;
+      float: none;
+      border: 0;
       border-right: @border-green-light;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      -ms-border-radius: 0;
+      -o-border-radius: 0;
+      border-radius: 0;
       line-height: 40px;
+      font-family: Raleway;
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
     }
   }
   .btn-wrapper {
+    margin-left: 15px;
+    width: 55px;
+    height: 60px;
+    position: relative;
     border-left: @border-green-light;
     border-right: @border-green-light;
+    button.navbar-toggle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: 0;
+      padding: 0;
+      margin-left: -8px;
+      margin-top: -6px;
+      border: 0;
+      .icon-bar {
+        width: 16px;
+        height: 2px;
+        background: @color-white;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -ms-border-radius: 0;
+        -o-border-radius: 0;
+        border-radius: 0;
+        + .icon-bar {
+          margin-top: 3px;
+        }
+      }
+    }
+  }
+  .navbar-collapse {
+    position: absolute;
+    z-index: 10;
+    left: 15px;
+    right: 15px;
+    top: 100%;
+    border: 0;
+    // padding: 0;
+    background: @color-light-green;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    .menu {
+      counter-reset: menuList;
+      li:before {
+        counter-increment: menuList;
+        content: "0" counter(menuList) ". ";
+        display: block;
+        width: 55px;
+        float: left;
+        line-height: 40px;
+        font-family: Raleway;
+        font-size: 10px;
+        text-align: center;
+      }
+    }
   }
 }
 
@@ -1470,9 +1542,12 @@ p {
 }
 
 /**********MAIN PAGE***************/
-
+#block-views-main-slider-block,
 #block-views-main-slider-block-1 {
   display: none;
+}
+#block-views-main-slider-block {
+  overflow: hidden;
 }
 .front {
   h1 {
