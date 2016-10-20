@@ -73,7 +73,7 @@
  * @ingroup templates
  */
 ?>
-<header id="navbar" role="banner">
+<header id="navbar" class="navbar-front" role="banner">
   <div class="<?php print $container_class; ?>">
     <div class="navbar-header">
       <div id="logo-wrapper" class="col-xs-4 col-sm-2">
@@ -93,40 +93,49 @@
       <?php endif; ?>
     </div>
   </div>
+
   <div id="main-menu-wrapper">
-
-    <?php if (!empty($page['under_header'])): ?>
-      <?php print render($page['under_header']); ?>
-    <?php endif; ?>
-
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
       <div class="container">
-      <div class="visible-xs visible-sm">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only"><?php print t('Toggle navigation'); ?></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <p><?php print t('Site menu'); ?></p>
-      </div>
-
-        <div class="navbar-collapse collapse">
-          <nav role="navigation">
-            <?php if (!empty($primary_nav)): ?>
-              <?php print render($primary_nav); ?>
-            <?php endif; ?>
-            <?php if (!empty($secondary_nav)): ?>
-              <?php print render($secondary_nav); ?>
-            <?php endif; ?>
-            <?php if (!empty($page['navigation'])): ?>
-              <?php print render($page['navigation']); ?>
-            <?php endif; ?>
-          </nav>
+        <div class="visible-xs visible-sm">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only"><?php print t('Toggle navigation'); ?></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <p><?php print t('Site menu'); ?></p>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-2">
+            <div class="navbar-collapse collapse">
+              <nav role="navigation">
+                <?php if (!empty($primary_nav)): ?>
+                  <?php print render($primary_nav); ?>
+                <?php endif; ?>
+                <?php if (!empty($secondary_nav)): ?>
+                  <?php print render($secondary_nav); ?>
+                <?php endif; ?>
+                <?php if (!empty($page['navigation'])): ?>
+                  <?php print render($page['navigation']); ?>
+                <?php endif; ?>
+              </nav>
+            </div>
+          </div>
+          <?php if (!empty($page['under_header'])): ?>
+            <div class="col-md-9 under-header-wrapper hidden-xs hidden-sm">
+              <?php print render($page['under_header']); ?>
+            </div>
+          <?php endif; ?>
+        </div>
+        <div class="row under-header2-wrapper hidden-xs hidden-sm">
+          <?php if (!empty($page['under_header2'])): ?>
+              <?php print render($page['under_header2']); ?>
+          <?php endif; ?>
         </div>
       </div>
-
     <?php endif; ?>
+
   </div>
 </header>
 

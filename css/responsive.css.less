@@ -112,7 +112,7 @@
 			margin: 0 0 40px 33px;
 			.views-field-field-image {
 				float: none;
-				width: auto;	      
+				width: auto;
 			}
 			.views-field-title {
 				position: static;
@@ -250,11 +250,23 @@
 }
 
 @media screen and (min-width:992px) {
+	// Home Page Navigation
+	#navbar.navbar-front {
+		#main-menu-wrapper {
+			.navbar-collapse .menu li {
+				float: none;
+			}
+		}
+	}
+	// /Home Page Navigation
 	#block-views-main-slider-block,
 	#block-views-main-slider-block-1 {
 		display: block;
 	}
 	#main-menu-wrapper {
+		> .container {
+			position: static;
+		}
 		.navbar-collapse {
 			position: static;
 			.menu {
@@ -274,6 +286,13 @@
 		.navbar-collapse {
 			padding: 0;
 			background-color: transparent;
+		}
+		.language-switcher-locale-url {
+			li {
+				display: inline-block;
+				float: none;
+				margin-right: 18px;
+			}
 		}
 	}
 	.navbar-collapse.collapse {
@@ -358,7 +377,7 @@
 				background-color: transparent;
 				.views-field-title ,
 				.views-field-field-place {
-					background: @color-bg-grey; 
+					background: @color-bg-grey;
 				}
 			}
 		}
@@ -444,8 +463,8 @@
 							position: absolute;
 							right: 0;
 							top: 0;
-							width: 0; 
-							height: 0; 
+							width: 0;
+							height: 0;
 							border-top: 20px solid transparent;
 							border-bottom: 20px solid transparent;
 							border-left: 15px solid @color-bg-grey;
@@ -470,7 +489,7 @@
 		.view-phones {
 			.views-row {
 				.finishes_label{
-					width: 162px;					
+					width: 162px;
 				}
 			}
 		}

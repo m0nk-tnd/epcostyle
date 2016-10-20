@@ -11,6 +11,7 @@ base theme = bootstrap
 regions[navigation]     = 'Navigation'
 regions[header]         = 'Top Bar'
 regions[under_header]   = 'Top underbar'
+regions[under_header2]  = 'Top underbar two'
 regions[highlighted]    = 'Highlighted'
 regions[help]           = 'Help'
 regions[content]        = 'Content'

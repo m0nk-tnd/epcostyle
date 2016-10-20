@@ -460,13 +460,13 @@ p {
   border-bottom-width: 5px;
 
   li {
-    border-right: @border-green-light;
+    //border-right: @border-green-light;
     display: block;
     float: none;
 
-    &.first {
+    /*&.first {
       border-left: @border-green-light;
-    }
+    }*/
 
     a {
       text-indent: 38px;
@@ -908,7 +908,7 @@ p {
       }
     }
     &:hover {
-      background: @color-bg-grey; 
+      background: @color-bg-grey;
       .views-field-title ,
       .views-field-field-place {
         color: @color-red;
@@ -1549,6 +1549,35 @@ p {
 #block-views-main-slider-block {
   overflow: hidden;
 }
+#navbar.navbar-front {
+  background: transparent;
+  #main-menu-wrapper {
+    border: 0;
+  }
+  #slider-background {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+  .under-header-wrapper {
+    // display: none;
+    position: static;
+  }
+}
+#block-views-main-slider-block-1 {
+  .flexslider {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: right;
+    li {
+      border: 0;
+      color: #fff;
+    }
+  }
+}
 .front {
   h1 {
     margin-bottom: 0;
@@ -1710,7 +1739,7 @@ p {
     color: @color-white;
     padding-bottom: 40px;
     margin-bottom: 5px;
-    
+
     h2 {
       .h1;
       margin-top: 30px;
@@ -1765,7 +1794,7 @@ p {
   .buttons-row {
     padding: 81px 0 40px;
     background: url(../images/bg-box.png) repeat 50% 0;
-    
+
     .btn-wrapper {
       border: 10px solid @color-bg-grey;
       margin-bottom: 40px;
@@ -1869,7 +1898,7 @@ p {
       img {
         width: 100%;
         height: auto;
-        border: 2px solid @color-bg-grey;        
+        border: 2px solid @color-bg-grey;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         -ms-border-radius: 3px;
