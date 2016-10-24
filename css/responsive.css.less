@@ -194,6 +194,23 @@
 				}
 			}
 		}
+		#block-views-catalog-block-1 .block-title {
+			margin-bottom: 20px;		
+		}
+		.portfolio-views-wrapper {
+			.slick__slide {
+				.hidden-wrapper {
+					padding: 20px 20px 24px;
+					.views-field-title {
+						font-size: 24px;
+						line-height: 30px;
+					}
+					.views-field-field-place {
+						font-size: 14px;
+					}
+				}
+			}
+		}
 	}
 	.view-news {
 		.views-row {
@@ -250,19 +267,6 @@
 }
 
 @media screen and (min-width:992px) {
-	// Home Page Navigation
-	#navbar.navbar-front {
-		#main-menu-wrapper {
-			.navbar-collapse .menu li {
-				float: none;
-			}
-		}
-	}
-	// /Home Page Navigation
-	#block-views-main-slider-block,
-	#block-views-main-slider-block-1 {
-		display: block;
-	}
 	#main-menu-wrapper {
 		> .container {
 			position: static;
@@ -295,13 +299,52 @@
 			}
 		}
 	}
+	// Home Page Navigation
+	#navbar.navbar-front {
+		background: transparent;
+		#block-locale-language {
+			display: none;
+		}
+		#main-menu-wrapper {
+			padding-top: 80px;
+			border: 0;
+			.navbar-collapse .menu {
+				float: none;
+				li {
+					float: none;
+					border: 0;
+					position: relative;
+					a {
+						padding: 0;
+					}
+					&:before {
+						position: absolute;
+						width: auto;
+						left: -20px;
+						top: 2px;
+						display: block;
+					}
+				}
+			}
+		}
+	}
+	// /Home Page Navigation
+	#block-views-main-slider-block,
+	#block-views-main-slider-block-1 {
+		display: block;
+	}
 	.navbar-collapse.collapse {
 		display: block !important;
 	}
-	.node-type-news .main-container > .row > .col-xs-12.col-md-9,
-	.node-type-protfolio .main-container > .row > .col-xs-12.col-md-9 {
+	.node-type-news .h1-bread-wrapper + section,
+	.node-type-protfolio .h1-bread-wrapper + section {
 		position: static;
+
 	}
+	// .node-type-news .main-container > .row > .col-xs-12.col-md-9,
+	// .node-type-protfolio .main-container > .row > .col-xs-12.col-md-9 {
+	// 	position: static;
+	// }
 	.node-type-news .main-container,
 	.node-type-protfolio .main-container {
 		position: relative;
@@ -518,6 +561,15 @@
 		}
 	}
 	.front {
+		.about-row {
+			h1 {
+				margin-top: 90px;
+			}
+			.field-name-body {
+				padding-top: 95px;
+				padding-bottom: 85px;
+			}
+		}
 		.catalog-main {
 			margin-top: 23px;
 		}
@@ -543,6 +595,19 @@
 				}
 				.img-wrapper {
 					margin-bottom: 31px;
+				}
+			}
+		}
+		.col-left-main {
+			margin-top: 5px;
+		}
+		#block-views-catalog-block-1 .block-title {
+			margin-top: 10px;		
+		}
+		.portfolio-views-wrapper {
+			.slick__slide {
+				.hidden-wrapper {
+					padding: 30px 30px 34px;
 				}
 			}
 		}

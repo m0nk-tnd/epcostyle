@@ -99,8 +99,8 @@
   <div id="main-menu-wrapper">
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
       <div class="container">
-        <div class="row visible-xs visible-sm">
-          <div class="button-container">
+        <div class="row">
+          <div class="button-container visible-xs visible-sm">
             <div class="btn-wrapper visible-xs visible-sm pull-left">
               <button type="button" class="navbar-toggle visible-xs visible-sm" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only"><?php print t('Toggle navigation'); ?></span>
@@ -111,7 +111,7 @@
             </div>
             <p class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><?php print t('Site menu'); ?></p>
           </div>
-          <div class="col-xs-12 col-md-2">
+          <div class="col-xs-12 col-md-2 front-navbar-collapse">
             <div class="navbar-collapse collapse">
               <nav role="navigation">
                 <?php if (!empty($primary_nav)): ?>
@@ -127,7 +127,7 @@
             </div>
           </div>
           <?php if (!empty($page['under_header'])): ?>
-            <div class="col-md-9 under-header-wrapper hidden-xs hidden-sm">
+            <div class="col-md-9 under-header-wrapper hidden-xs hidden-sm pull-right">
               <?php print render($page['under_header']); ?>
             </div>
           <?php endif; ?>
