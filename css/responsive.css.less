@@ -139,6 +139,7 @@
 			line-height: 40px;
 		}
 		.views-row {
+			margin-bottom: 35px;
 			.views-field-title {
 				padding: 16px;
 				font-size: 16px;
@@ -264,6 +265,42 @@
 			}
 		}
 	}
+	.view-contacts {
+		.contacts-row {
+			margin-top: 45px;
+			.views-field-field-image {
+				float: none;
+			}
+			.views-field-title {
+				display: block;
+				width: auto;
+				height: auto;
+				margin-top: 15px;
+			}
+			.second-fieldset {
+				> row > div:first-child {
+					margin-top: 0;
+				}
+				.coordinates-row,
+				.views-field-field-mailes,
+				.views-field-field-phone-for-call {
+					a {
+						position: static;
+						top: 0;
+						right: 0;
+						font-family: Raleway;
+						font-size: 14px;
+						font-weight: 600;
+						line-height: 40px;
+						width: 100%;
+						height: auto;
+						padding-left: 40px;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+	}
 }
 
 @media screen and (min-width:992px) {
@@ -273,6 +310,8 @@
 		}
 		.navbar-collapse {
 			position: static;
+			padding: 0 15px;
+			background-color: transparent;
 			.menu {
 				float: left;
 				li {
@@ -286,10 +325,6 @@
 					}
 				}
 			}
-		}
-		.navbar-collapse {
-			padding: 0;
-			background-color: transparent;
 		}
 		.language-switcher-locale-url {
 			li {
@@ -308,21 +343,23 @@
 		#main-menu-wrapper {
 			padding-top: 80px;
 			border: 0;
-			.navbar-collapse .menu {
-				float: none;
-				li {
+			.navbar-collapse {
+				.menu {
 					float: none;
-					border: 0;
-					position: relative;
-					a {
-						padding: 0;
-					}
-					&:before {
-						position: absolute;
-						width: auto;
-						left: -20px;
-						top: 2px;
-						display: block;
+					li {
+						float: none;
+						border: 0;
+						position: relative;
+						a {
+							padding: 0;
+						}
+						&:before {
+							position: absolute;
+							width: auto;
+							left: -20px;
+							top: 2px;
+							display: block;
+						}
 					}
 				}
 			}
@@ -572,6 +609,7 @@
 		}
 		.catalog-main {
 			margin-top: 23px;
+			margin-bottom: 35px;
 		}
 		#block-search-form {
 			top: 20px;
@@ -632,6 +670,43 @@
 			padding-bottom: 37px;
 			.img-wrapper {
 				margin-bottom: 29px;
+			}
+		}
+	}
+	.view-contacts {
+		.contacts-row {
+			.views-field-field-image {
+				float: left;
+				margin-right: 16px;
+			}
+			.views-field-title {
+				display: table;
+				width: 140px;
+				max-width: 140px;
+				height: 59px;
+				margin-top: -5px;
+			}
+			.second-fieldset {
+				.coordinates-row {
+					margin-top: 0;
+				}
+				.coordinates-row,
+				.views-field-field-mailes,
+				.views-field-field-phone-for-call {
+					a {
+						position: static;
+						top: 0;
+						right: 0;
+						font-family: Raleway;
+						font-size: 14px;
+						font-weight: 600;
+						line-height: 40px;
+						width: 100%;
+						height: auto;
+						padding-left: 40px;
+						text-decoration: none;
+					}
+				}
 			}
 		}
 	}
