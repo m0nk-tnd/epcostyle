@@ -45,6 +45,14 @@ a {
     color: @color-link-active;
   }
 }
+.file-icon {
+  display: none;
+}
+a[href$='.pdf'],
+a[href*='.pdf#page='] {
+  padding-left: 20px;
+  background: url(../images/pdf.svg) 2px 2px no-repeat;
+}
 #block-system-main {
   ul {
     list-style: none;
@@ -586,6 +594,7 @@ p {
     width: 55px;
     height: 60px;
     position: relative;
+    z-index: 1;
     border-left: @border-green-light;
     border-right: @border-green-light;
     button.navbar-toggle {
@@ -1236,6 +1245,17 @@ p {
     .views-field-field-image {
       float: left;
       margin-right: 30px;
+      width: 50px;
+      height: 50px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     .views-field-title {
       display: table;
@@ -2161,3 +2181,107 @@ p {
     width: 1170px;
   }
 }
+
+
+/* colorbox */
+#colorbox,
+#colorbox #cboxWrapper,
+#colorbox #cboxLoadedContent,
+#colorbox #cboxContent {
+  height: auto !important;
+}
+#colorbox,
+#cboxOverlay {
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+}
+#colorbox #cboxWrapper {
+  position: static;
+}
+#colorbox,
+#colorbox #cboxContent,
+#colorbox #cboxLoadedContent {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+#cboxOverlay {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  background: #000;
+  opacity: 0.8;
+}
+#colorbox #cboxTopLeft,
+#colorbox #cboxTopCenter,
+#colorbox #cboxTopRight,
+#colorbox #cboxMiddleLeft,
+#colorbox #cboxMiddleRight,
+#colorbox #cboxBottomLeft,
+#colorbox #cboxBottomCenter,
+#colorbox #cboxBottomRight {
+  background: none;
+}
+#colorbox #cboxWrapper,
+#colorbox #cboxContent {
+  background: @color-light-green;
+}
+#colorbox {
+  border: 1px solid #000;
+  overflow-y: auto;
+  color: @color-white;
+
+  input, .cbinput {
+    border: 1px solid @color-green;
+    background: transparent;
+    color: @color-white;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none !important;
+  }
+  textarea {
+    .cbinput;
+    resize: none;
+  }
+  .webform-component {
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 30px;
+    input {
+      max-width: 100%;
+      width: 100%;
+    }    
+    &.half-form {
+      width: 50%;
+      float: left;
+      input {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+  }
+  #cboxClose {
+    display: none;
+  }
+  .form-actions {
+    width: 100%;
+    padding: 0 15px;
+    .form-submit {
+      width: 100%;
+      background: @color-green;
+      font-family: Raleway;
+      font-size: 14px;
+      line-height: 40px;
+      font-weight: 600;
+      padding: 0;
+      text-transform: uppercase;
+    }
+  }
+  #cboxLoadedContent {
+    margin-bottom: 0;
+  }
+}
+/*Colorbox*/
