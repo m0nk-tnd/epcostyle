@@ -6,6 +6,7 @@
 		$('#block-categories-main').collapsibleMenu();
 		calcMenuPaddings();
 		$('select').selectBox('destroy').selectBox({mobile: true});
+		initOpensCart();
 	});
 	$(window).load(function() {
 		calcMenuPaddings();
@@ -65,6 +66,18 @@
 				'padding-right': 0
 			});
 		}
+	}
+
+	function initOpensCart() {
+		var cart = $('#block-basic-cart-additional-tnd-shopping-cart'),
+			btn = cart.find('.cart-btn'),
+			cartForm = cart.find('form');
+
+		$(document).on('click', '.cart-btn', function(event) {
+			event.preventDefault();
+			btn.toggleClass('opened');
+			cartForm.toggleClass('opened');
+		});
 	}
 
 })(jQuery);

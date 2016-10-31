@@ -84,8 +84,12 @@ unset($content['links']);
   <?php if ((!$page && !empty($title)) || !empty($title_prefix) || !empty($title_suffix) || $display_submitted): ?>
   <header>
     <?php print render($title_prefix); ?>
-    <?php if (!$page && !empty($title)): ?>
-    <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+    <?php if($view_mode === 'colorbox'): ?>
+      <h2<?php print $title_attributes; ?>><?php print $title; ?></h2>
+    <?php else: ?>
+      <?php if (!$page && !empty($title)): ?>
+      <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+      <?php endif; ?>
     <?php endif; ?>
     <?php print render($title_suffix); ?>
     <?php if ($display_submitted): ?>

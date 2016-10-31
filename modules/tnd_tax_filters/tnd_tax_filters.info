@@ -1,0 +1,7 @@
+name = TND Taxonomy filters
+description = Module with filters functional for EPCO web-site
+version = 7.x-1.0
+core = 7.x
+package = TND
+
+dependencies[] = views

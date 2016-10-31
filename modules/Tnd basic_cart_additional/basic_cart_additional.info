@@ -1,0 +1,8 @@
+name = TND additional functions for basic cart
+description = Module with additional basic_cart functional
+version = 7.x-1.0
+core = 7.x
+package = TND
+
+dependencies[] = views
+dependencies[] = basic_cart

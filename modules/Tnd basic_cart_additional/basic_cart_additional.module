@@ -1,0 +1,191 @@
+<?
+
+/**
+ * Implements hook_menu().
+ */
+function basic_cart_additional_menu() {
+	$items = array();
+
+	$items['cart/reset'] = array(
+		'title' => 'Basic cart reset',
+	    'description' => 'Basic cart reset',
+	    'page callback' => 'basic_cart_additional_reset_cart',
+	    'access arguments' => array('use basic cart'),
+	);
+	return $items;
+}
+
+/**
+ * reset page callback
+ */
+function basic_cart_additional_reset_cart() {
+	unset($_SESSION['basic_cart']['cart']);
+    $referer = $_SERVER["HTTP_REFERER"];
+    drupal_goto($referer);
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function basic_cart_additional_theme_registry_alter(&$theme_registry) {
+	if(isset($theme_registry['basic_cart_render_cart_element'])) {
+		$theme_registry['basic_cart_render_cart_element']['function'] = 'basic_cart_additiona_theme_basic_cart_render_cart_element';
+	}
+}
+
+/**
+ * form element theme
+ */
+function basic_cart_additiona_theme_basic_cart_render_cart_element($variables) {
+	// Element name and nid.
+  $name = $variables['form']['#name'];
+  $nid = (int) str_replace(array('cartcontents[', ']'), '', $name);
+  if (empty($nid)) {
+    return '';
+  }
+  // Delete image.
+  $vars = array(
+    'path' => base_path() . drupal_get_path('module', 'basic_cart') . '/images/delete2.png',
+    'alt' => t('Remove from cart'),
+    'title' => t('Remove from cart'),
+    'attributes' => array('class' => 'basic-cart-delete-image-image'),
+  );
+  $delete_link = l(theme('image', $vars), 'cart/remove/' . $nid, array('html' => TRUE));
+  // Getting the node for it's title and description.
+  $node = basic_cart_get_cart($nid);
+  // Node description.
+  $desc = $node->field_sku['und'][0]['value'];
+  // Price and currency.
+  // $unit_price = isset($node->basic_cart_unit_price) ? $node->basic_cart_unit_price : 0;
+  // $unit_price = basic_cart_price_format($unit_price);
+  
+  // Prefix.
+  $prefix  = '<div class="basic-cart-cart-contents row">';
+  $prefix .= '  <div class="basic-cart-delete-image cell">' . $delete_link . '</div>';
+  $prefix .= '  <div class="basic-cart-cart-node-title cell">' . l($node->title, 'node/' . $nid) . '<br />';
+  $prefix .= '    <span class="basic-cart-cart-node-summary">' . $desc . '</span>';
+  $prefix .= '  </div>';
+  // $prefix .= '  <div class="cell basic-cart-cart-unit-price"><strong>' . $unit_price . '</strong></div>';
+  // $prefix .= '  <div class="cell basic-cart-cart-x">x</div>';
+  $prefix .= '  <div class="basic-cart-cart-quantity cell">';
+  $prefix .= '    <div class="cell">';
+  // Suffix.
+  $suffix  = '    </div>';
+  $suffix .= '  </div>';
+  $suffix .= '</div>';
+  
+  // Rendering the element as textfield.
+  $quantity = theme('textfield', $variables['form']);
+  // Full view return.
+  return $prefix . $quantity . $suffix;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function basic_cart_additional_form_alter(&$form, &$form_state, $form_id) {
+	// alter only basic_cart form
+	if($form_id == 'basic_cart_cart_form') {
+		// add reset button and weight
+		$form['buttons']['reset'] = array(
+      '#prefix' => '<div class="btn-reset-wrapper">',
+      '#suffix' => '</div>',
+			'#type' => 'submit',
+			'#value' => t('Reset'),
+			'#weight' => 1,
+		);
+		// change button weight
+		if(isset($form['buttons']['checkout'])) {
+			$form['buttons']['checkout']['#weight'] = 2;
+      $form['buttons']['checkout']['#prefix'] = '<div class="btn-checkout-wrapper">';
+      $form['buttons']['checkout']['#suffix'] = '</div>';
+		}
+		// remove total price
+        unset($form['total_price']);
+        // change submit callback
+		$form['#submit'] = array('_basic_cart_additional_cart_form_submit');
+	}
+}
+
+/**
+ * Shopping cart form.
+ * copy common callback and add new button handler
+ */
+function _basic_cart_additional_cart_form_submit($form_id, $form_state) {
+	foreach ($form_state['values']['cartcontents'] as $nid => $value) {
+		$quantity = (int) $value;
+		if ($quantity > 0) {
+			$_SESSION['basic_cart']['cart'][$nid]->basic_cart_quantity = $quantity;
+		}
+	// If the quantity is zero, we just remove the node from the cart.
+		elseif ($quantity == 0) {
+			unset($_SESSION['basic_cart']['cart'][$nid]);
+		}
+	}
+
+	if (module_exists('basic_cart_order') && $form_state['values']['op'] == t('Checkout')) {
+		drupal_goto('checkout');
+	}
+	elseif ($form_state['values']['op'] == t('Reset')) {
+		drupal_goto('cart/reset');
+	}
+	else {
+		drupal_set_message(t('Shopping cart updated.'));
+	}
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function basic_cart_additional_block_info() {
+  $blocks['tnd_shopping_cart'] = array(
+    'info' => t('TND Shopping cart'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function basic_cart_additional_block_view($delta = '') {
+  // Check if the current user has access.
+  switch ($delta) {
+    case 'tnd_shopping_cart':
+      if (user_access('use basic cart')) {
+      	// get common cart form
+        $form = basic_cart_additional_cart();
+        
+        $block['subject'] = t('Your cart');
+        $block['content'] = render($form);
+
+        return $block;
+      }
+      break;
+  }
+}
+
+/**
+ * Callback function for cart listing.
+ */
+function basic_cart_additional_cart() {
+  $cart = basic_cart_get_cart();
+  $count = 0;
+  $output = array();
+  if (!empty($cart)) {
+    $count = count($cart);
+    $form = drupal_get_form('basic_cart_cart_form');
+    $form['#weight'] = 10;
+    $output['form'] = $form;
+  }
+
+  $cart_btn = '<div class="cart-btn"><div class="cart-icon"></div>';
+  $cart_btn .= '<div class="cart-btn-content"><span class="cart-count">' . $count . '</span>'. t('items') . '<span class="cart-arrow"></span></div>';
+  $cart_btn .= '</div>';
+  $output['btn'] = array(
+    '#type' => 'markup',
+    '#markup' => $cart_btn,
+    '#weight' => 1,
+  );
+  return $output;
+}
