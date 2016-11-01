@@ -7,6 +7,7 @@
 		calcMenuPaddings();
 		$('select').selectBox('destroy').selectBox({mobile: true});
 		initOpensCart();
+		addQuantityButtons();
 	});
 	$(window).load(function() {
 		calcMenuPaddings();
@@ -77,6 +78,29 @@
 			event.preventDefault();
 			btn.toggleClass('opened');
 			cartForm.toggleClass('opened');
+		});
+	}
+
+	function addQuantityButtons() {
+		var cart = $('#block-basic-cart-additional-tnd-shopping-cart'),
+			inputs = cart.find('.basic-cart-cart-quantity input');
+		inputs.each(function(index, el) {
+			// console.log($(el));
+			var $element = $(el);
+			$element.after('<span class="inp-up" data-source-id='+ $element.attr('id') +'>');
+			$element.before('<span class="inp-down" data-source-id='+ $element.attr('id') +'>');
+		});
+		$(document).on('click', '.inp-up', function(event) {
+			event.preventDefault();
+			var input = $('#'+$(event.target).attr('data-source-id'));
+			input.val(+input.val()+1);
+		});
+		$(document).on('click', '.inp-down', function(event) {
+			event.preventDefault();
+			var input = $('#'+$(event.target).attr('data-source-id'));
+			if(+input.val() > 0){
+				input.val(+input.val()-1);
+			}
 		});
 	}
 

@@ -61,7 +61,6 @@ function basic_cart_additiona_theme_basic_cart_render_cart_element($variables) {
   
   // Prefix.
   $prefix  = '<div class="basic-cart-cart-contents row">';
-  $prefix .= '  <div class="basic-cart-delete-image cell">' . $delete_link . '</div>';
   $prefix .= '  <div class="basic-cart-cart-node-title cell">' . l($node->title, 'node/' . $nid) . '<br />';
   $prefix .= '    <span class="basic-cart-cart-node-summary">' . $desc . '</span>';
   $prefix .= '  </div>';
@@ -72,6 +71,7 @@ function basic_cart_additiona_theme_basic_cart_render_cart_element($variables) {
   // Suffix.
   $suffix  = '    </div>';
   $suffix .= '  </div>';
+  $suffix .= '  <div class="basic-cart-delete-image cell">' . $delete_link . '</div>';
   $suffix .= '</div>';
   
   // Rendering the element as textfield.
@@ -86,6 +86,7 @@ function basic_cart_additiona_theme_basic_cart_render_cart_element($variables) {
 function basic_cart_additional_form_alter(&$form, &$form_state, $form_id) {
 	// alter only basic_cart form
 	if($form_id == 'basic_cart_cart_form') {
+    dpm($form);
 		// add reset button and weight
 		$form['buttons']['reset'] = array(
       '#prefix' => '<div class="btn-reset-wrapper">',
@@ -186,6 +187,14 @@ function basic_cart_additional_cart() {
     '#type' => 'markup',
     '#markup' => $cart_btn,
     '#weight' => 1,
-  );
+    );
+  $output[] = array(
+    '#markup' => '<div class="row"><div class="col-xs-8 col-sm-12 pull-right cart-inner-wrapper">',
+    '#weight' => -100,
+    );
+  $output[] = array(
+    '#markup' => '</div></div>',
+    '#weight' => 100,
+    );
   return $output;
 }
