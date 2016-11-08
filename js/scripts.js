@@ -5,9 +5,16 @@
 		$('#block-views-categories-block').collapsibleMenu();
 		$('#block-categories-main').collapsibleMenu();
 		calcMenuPaddings();
+		// trigger select box after ajax complete
 		$('select').selectBox('destroy').selectBox({mobile: true});
 		initOpensCart();
 		addQuantityButtons();
+		mainMenuInit();
+		$(document).on('click', function(event) {
+			closePopup(event.target, '#block-basic-cart-additional-tnd-shopping-cart form.opened', '.cart-btn, #basic-cart-cart-form', '#block-basic-cart-additional-tnd-shopping-cart .cart-btn');
+			closePopup(event.target, '#main-menu-wrapper .navbar-collapse.in', '#main-menu-wrapper .button-container, #main-menu-wrapper .navbar-collapse', '#main-menu-wrapper button.navbar-toggle');
+			/* Act on the event */
+		});
 	});
 	$(window).load(function() {
 		calcMenuPaddings();
@@ -102,6 +109,22 @@
 				input.val(+input.val()-1);
 			}
 		});
+	}
+
+	function mainMenuInit() {
+		$(document).on('click', '.navbar-toggle-tnd', function(event) {
+			event.preventDefault();
+			$(event.target).prev().find('button').trigger('click');
+		});
+	}
+
+	// helper function, trigger click on @button if @elementCheck exists and @target or it's ancestors contains one of @checkArr
+	function closePopup(target, elementCheck, checkArr, button) {
+		if($(elementCheck).size()) {
+			if($(target).closest(checkArr).length == 0){
+				$(button).trigger('click');
+			}
+		}
 	}
 
 })(jQuery);

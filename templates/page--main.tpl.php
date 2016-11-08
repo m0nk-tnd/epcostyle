@@ -109,7 +109,7 @@
                 <span class="icon-bar"></span>
               </button>
             </div>
-            <p class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><?php print t('Site menu'); ?></p>
+            <p class="navbar-toggle-tnd"><?php print t('Site menu'); ?></p>
           </div>
           <div class="col-xs-12 col-md-2 front-navbar-collapse">
             <div class="navbar-collapse collapse">

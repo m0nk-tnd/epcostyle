@@ -18,7 +18,9 @@
 
 @image-icons: url(../images/icons.png);
 
-
+svg.defs {
+  display: none;
+}
 body {
   font-family: "Source Sans Pro";
   font-size: 16px;
@@ -625,7 +627,7 @@ p {
     }
   }
   .button-container {
-    p.navbar-toggle {
+    .navbar-toggle-tnd {
       display: block;
       margin: 0 15px;
       padding: 10px 0;
@@ -650,7 +652,6 @@ p {
     width: 55px;
     height: 60px;
     position: relative;
-    z-index: 1;
     border-left: @border-green-light;
     border-right: @border-green-light;
     button.navbar-toggle {
@@ -2331,6 +2332,76 @@ p {
   *::-moz-placeholder          {color:@color-white; opacity: 0.8;}
   *:-moz-placeholder           {color:@color-white; opacity: 0.8;}
   *:-ms-input-placeholder      {color:@color-white; opacity: 0.8;}
+
+  .basic-cart-grid {
+    margin-top: 15px;
+    .row {
+      margin: 0;
+      padding: 15px 15px 20px;
+      border: 0;
+      position: relative;
+      left: 0;
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 1px;
+        left: 15px;
+        right: 15px;
+        bottom: 0;
+        background: @color-green;
+      }
+    }
+    .basic-cart-cart-node-title {
+      a {
+        display: block;
+        float: left;
+        color: @color-white;
+        text-decoration: none;
+        font-family: Raleway;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+      }
+      span{
+        clear: left;
+        display: block;
+        color: @color-white;
+        font-size: 12px;
+        line-height: 14px;
+      }
+    }
+    .basic-cart-cart-quantity {
+      color: @color-white;
+      font-family: Raleway;
+      font-size: 16px;
+      line-height: 25px;
+      font-weight: 400;
+      padding-right: 2px;
+    }
+  }
+  h4 {
+    margin: 0 0 30px;
+    font-size: 14px;
+    color: @color-white;
+    padding: 0 15px;
+  }
+  .node-order-form {
+    .selectBox {
+      border: 1px solid @color-green;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      .selectBox-label {
+        color: @color-white;
+        font-family: Raleway;
+        font-weight: 400;
+        font-size: 14px;
+      }
+    }
+    .grippie {
+      display: none;
+    }
+  }
 }
 /*Colorbox*/
 

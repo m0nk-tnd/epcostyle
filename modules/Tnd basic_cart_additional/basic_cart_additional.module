@@ -125,6 +125,8 @@ function basic_cart_additional_form_alter(&$form, &$form_state, $form_id) {
     _basic_cart_additional_set_pleceholder_hide_title($form['field_phone']);
     _basic_cart_additional_set_pleceholder_hide_title($form['field_title_of_company']);
     _basic_cart_additional_set_pleceholder_hide_title($form['field_country']);
+    $form['field_country']['und']['#options']['_none'] = t('Country');
+    // dpm($form['field_country']);
     $form['pref'] = array(
       '#markup' => '<div class="checkout-header"><h2> ' .
       t('Send to Us') . '</h2><h4>' . 
