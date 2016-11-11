@@ -5,11 +5,12 @@
 		$('#block-views-categories-block').collapsibleMenu();
 		$('#block-categories-main').collapsibleMenu();
 		calcMenuPaddings();
-		// trigger select box after ajax complete
-		$('select').selectBox('destroy').selectBox({mobile: true});
 		initOpensCart();
 		addQuantityButtons();
 		mainMenuInit();
+		
+		$('select').selectBox('destroy').selectBox({mobile: true});
+
 		$(document).on('click', function(event) {
 			closePopup(event.target, '#block-basic-cart-additional-tnd-shopping-cart form.opened', '.cart-btn, #basic-cart-cart-form', '#block-basic-cart-additional-tnd-shopping-cart .cart-btn');
 			closePopup(event.target, '#main-menu-wrapper .navbar-collapse.in', '#main-menu-wrapper .button-container, #main-menu-wrapper .navbar-collapse', '#main-menu-wrapper button.navbar-toggle');
@@ -21,6 +22,10 @@
 	});
 	$(window).resize(function(event) {
 		calcMenuPaddings();
+	});
+
+	$( document ).ajaxComplete(function() {
+		$('select').selectBox('destroy').selectBox({mobile: true});
 	});
 
 	$.fn.collapsibleMenu = function() {
@@ -78,8 +83,8 @@
 
 	function initOpensCart() {
 		var cart = $('#block-basic-cart-additional-tnd-shopping-cart'),
-			btn = cart.find('.cart-btn'),
-			cartForm = cart.find('form');
+		btn = cart.find('.cart-btn'),
+		cartForm = cart.find('form');
 
 		$(document).on('click', '.cart-btn', function(event) {
 			event.preventDefault();
@@ -90,7 +95,7 @@
 
 	function addQuantityButtons() {
 		var cart = $('#block-basic-cart-additional-tnd-shopping-cart'),
-			inputs = cart.find('.basic-cart-cart-quantity input');
+		inputs = cart.find('.basic-cart-cart-quantity input');
 		inputs.each(function(index, el) {
 			// console.log($(el));
 			var $element = $(el);

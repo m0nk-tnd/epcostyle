@@ -8,16 +8,15 @@
  */
 ?>
 <div class="group row">
-	<div class="row-height">
+	<div class="row-eq-height-sm">
 		<?php if (!empty($title)): ?>
-			<div class="col-sm-height full-height-wrapper col-xs-12 col-sm-2 col-md-3">
-				<div class="full-height">
+			<div class="col-group-title-wrapper col-xs-12 col-sm-2 col-md-3">
+				<div>
 					<h3><?php print $title; ?></h3>
-
 				</div>
 			</div>
 		<?php endif; ?>
-		<div class="col-sm-height col-xs-12 col-sm-8 col-md-9">
+		<div class="col-xs-12 col-sm-8 col-md-9">
 			<div class="row">
 				<?php foreach ($rows as $id => $row): ?>
 					<div<?php if ($classes_array[$id]) { print ' class="' . $classes_array[$id] .'"';  } ?>>

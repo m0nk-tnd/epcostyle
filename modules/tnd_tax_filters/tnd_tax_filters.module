@@ -31,28 +31,28 @@ function tnd_tax_filters_filters_form($form, $form_state) {
 	$tax = taxonomy_get_tree(3, 0, 1);
 	
 	// make options for 1st-level categories (tid->name)
-    $level1 = array();
-    foreach ($tax as $value) {
-    	$level1[$value->tid] = $value->name;
-    }
+	$level1 = array();
+	foreach ($tax as $value) {
+		$level1[$value->tid] = $value->name;
+	}
 
-    // ajax
-    if(isset($form_state['triggering_element']) && $form_state['triggering_element']['#type'] == 'select') {
-    	$input = $form_state['input'];
-    	if($input['1st_level'] !== 'all') {
-	    	$parent = $input['1st_level'];
+  // ajax
+	if(isset($form_state['triggering_element']) && $form_state['triggering_element']['#type'] == 'select') {
+		$input = $form_state['input'];
+		if($input['1st_level'] && $input['1st_level'] !== 'all') {
+			$parent = $input['1st_level'];
 
-    		$tax = taxonomy_get_tree(3, $parent);
+			$tax = taxonomy_get_tree(3, $parent);
 			// make options for 1st-level categories (tid->name)
-		    $level2 = array();
-		    foreach ($tax as $value) {
-		    	$level2[$value->tid] = $value->name;
-		    }
-    	}
-    }
-    else {
+			$level2 = array();
+			foreach ($tax as $value) {
+				$level2[$value->tid] = $value->name;
+			}
+		}
+	}
+	else {
 		// get current category if set
-	    $default = arg(1);
+		$default = arg(1);
 		if($default) {
 			// get category parent
 			$parent = taxonomy_get_parents($default);
@@ -61,18 +61,18 @@ function tnd_tax_filters_filters_form($form, $form_state) {
 
 			$tax = taxonomy_get_tree(3, $parent);
 			// make options for 1st-level categories (tid->name)
-		    $level2 = array();
-		    foreach ($tax as $value) {
-		    	$level2[$value->tid] = $value->name;
-		    }
+			$level2 = array();
+			foreach ($tax as $value) {
+				$level2[$value->tid] = $value->name;
+			}
 		}
-    }
+	}
 
 	$form['#id'] = 'tnd_portfolio_filters';
 
 	$form['mark'] = array(
 		'#markup' => '<h2>'. t('Sort portfolio by products') .'</h2>'
-	);
+		);
 
 	$form['1st_level'] = array(
 		'#title' 			=> t('Category'),
@@ -87,7 +87,7 @@ function tnd_tax_filters_filters_form($form, $form_state) {
 			'method' => 'replace',
 			'wrapper' => 'subcategory-wrapper'
 			)
-	);
+		);
 
 	$form['2nd_level'] = array(
 		'#required' 		=> true,
@@ -101,14 +101,14 @@ function tnd_tax_filters_filters_form($form, $form_state) {
 		// '#empty_value'		=> ('all'),
 		'#prefix'			=> '<div id="subcategory-wrapper">',
 		'#suffix'			=> '</div>'
-	);
+		);
 
 	$form['submit'] = array(
 		'#prefix' => '<div class="submit-wrapper">',
 		'#suffix' => '</div>',
 		'#type' => 'submit',
 		'#value' => t('Find'),
-	);
+		);
 
 	return $form;
 }
@@ -117,12 +117,11 @@ function tnd_tax_filters_filters_form($form, $form_state) {
  * implements hook_form_submit()
  */
 function tnd_tax_filters_filters_form_submit($form, &$form_state) {
-	dpm($form_state);
 	if($form_state['values']['2nd_level'] && $form_state['values']['2nd_level'] !== 'all'){
 		$form_state['no_redirect'] = false;
 		$form_state['redirect'] = array('portfolio-by-product/'
 			. $form_state['values']['2nd_level'] 
-		);
+			);
 	}
 }
 
