@@ -153,6 +153,11 @@ function tnd_tax_filters_preprocess_page(&$variables){
 			$breadcrumbs[] = $node->title;
 			drupal_set_breadcrumb($breadcrumbs);
 		}
+		elseif($node->type == 'product') {
+			// load masonry
+			if(masonry_loaded()) {
+			}
+		}
 	}
 	elseif($term && $term->vocabulary_machine_name == 'categories') {
 		// if (module_exists('i18n_taxonomy')) { //To not break your site if module is not installed

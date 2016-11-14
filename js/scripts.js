@@ -8,6 +8,7 @@
 		initOpensCart();
 		addQuantityButtons();
 		mainMenuInit();
+		ProductMasonry();
 		
 		$('select').selectBox('destroy').selectBox({mobile: true});
 
@@ -131,5 +132,15 @@
 			}
 		}
 	}
+	function ProductMasonry() {
+		var grid = '.panels-flexible-region-row-center_3',
+			item = '.product-masonry-item';
+		// var grid = '.view-catalog',
+		// item = '.views-row';
 
+		var $mas = $(grid).masonry({
+			itemSelector: item,
+		});
+
+	}
 })(jQuery);

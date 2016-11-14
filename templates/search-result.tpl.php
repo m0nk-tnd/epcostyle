@@ -64,16 +64,17 @@
  * @ingroup themeable
  */
 ?>
-<li class="<?php print $classes; ?>"<?php print $attributes; ?>>
+<div class="<?php print $classes; ?> col-xs-6 col-sm-4"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
-  <?php print $image; print $sku; ?>
+  <div class="image-wrapper">
+    <?php print $image;?> 
+  </div>
   <div class="title"<?php print $title_attributes; ?>>
-    <a href="<?php print $url; ?>"><?php print $title; ?></a>
+    <?php print $title; ?>
   </div>
   <?php print render($title_suffix); ?>
-  <div class="search-snippet-info">
-    <?php if ($snippet): ?>
-      <p class="search-snippet"<?php print $content_attributes; ?>><?php print $snippet; ?></p>
-    <?php endif; ?>
+  <div class="sku-wrapper">
+    <?php print $sku; ?>
   </div>
-</li>
+  <div class="link-wrapper"><a href="<?php print $url; ?>"></a></div>
+</div>

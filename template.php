@@ -33,3 +33,18 @@ function tnd_bootstrap_epco_preprocess_page(&$variables) {
 		$variables['content_column_class'] = ' class="col-xs-12"';
 	}
 }
+
+
+function tnd_bootstrap_epco_form_alter(array &$form, array &$form_state = array(), $form_id = NULL) {
+	if ($form_id) {
+		switch ($form_id) {
+			case 'search_form':
+			$form['basic']['keys']['#attributes']['placeholder'] = t('Search in catalog');
+			break;
+
+			case 'search_block_form':
+			$form['search_block_form']['#attributes']['placeholder'] = t('Search in catalog');
+			break;
+		}
+	}
+}
