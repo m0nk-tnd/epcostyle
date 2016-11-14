@@ -140,7 +140,7 @@ function tnd_tax_filters_preprocess_page(&$variables){
 		if($node->type == 'protfolio') {
 			if($place = field_get_items('node', $node, 'field_place')){
 				$place = taxonomy_term_load($place[0]['tid']);
-		    $place = i18n_taxonomy_localize_terms($place);
+				$place = i18n_taxonomy_localize_terms($place);
 				$place = $place->name;
 			}
 			else {
@@ -156,17 +156,34 @@ function tnd_tax_filters_preprocess_page(&$variables){
 	}
 	elseif($term && $term->vocabulary_machine_name == 'categories') {
 		// if (module_exists('i18n_taxonomy')) { //To not break your site if module is not installed
-    $term = i18n_taxonomy_localize_terms($term);
+		$term = i18n_taxonomy_localize_terms($term);
 		$parent = taxonomy_get_parents($term->tid);
 		$breadcrumbs = array();
 		$breadcrumbs[] = l('main', '/');
 		$breadcrumbs[] = l(t('Catalog'), '/catalog');
 		if($parent && count($parent)) {
 			$parent = array_pop($parent);
-	    $parent = i18n_taxonomy_localize_terms($parent);
+			$parent = i18n_taxonomy_localize_terms($parent);
 			$breadcrumbs[] = l($parent->name, "taxonomy/term/$parent->tid");
 		}
 		$breadcrumbs[] = $term->name;
 		drupal_set_breadcrumb($breadcrumbs);
 	}
+}
+
+function tnd_tax_filters_preprocess_search_result(&$variables){
+	$node = $variables['result']['node'];
+	$sku = field_get_items ('node' , $node , 'field_sku');
+	$sku = field_view_value ('node' , $node , 'field_sku' , $sku[0]);
+	$image = field_get_items ('node' , $node , 'field_gallery');
+	$image = field_view_value ('node' , $node , 'field_gallery' , $image[0], array(
+		'type' => 'image',
+		'settings' => array(
+		    'image_style' => 'catalog_thumbnail', //place your image style here
+		    'image_link' => 'content',
+		    ),
+		)
+	);
+	$variables['sku'] = render($sku);
+	$variables['image'] = render($image);
 }
