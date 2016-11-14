@@ -47,8 +47,12 @@
 	}
 	#block-locale-language {
 		padding: 0;
-		ul li {
-			margin-right: 18px;
+		ul {
+			padding-right: 0;
+			text-align: left;
+			li {
+				margin-right: 18px;
+			}
 		}
 		.language-switcher-locale-url {
 			margin-left: -15px;
@@ -159,7 +163,7 @@
 		}
 	}
 	.view-catalog {
-		h3 {
+		h3, h2 {
 			line-height: 40px;
 		}
 		.views-row {
@@ -193,6 +197,11 @@
 		margin-top: 0;
 	}
 	.front {
+		.about-row {
+			.field-name-body {
+				padding-bottom: 35px;
+			}
+		}
 		.catalog-main {
 			margin-top: 10px;
 		}
@@ -223,6 +232,7 @@
 			margin-bottom: 20px;		
 		}
 		.portfolio-views-wrapper {
+			margin-top: 10px;
 			.slick__slide {
 				.hidden-wrapper {
 					padding: 20px 20px 24px;
@@ -365,7 +375,7 @@
 		margin-top: 20px;
 	}
 	.social-icons {
-		text-align: right;
+		padding-right: 0;
 	}
 	#block-basic-cart-additional-tnd-shopping-cart {
 		margin: 20px 0;
@@ -590,6 +600,11 @@
 			}
 		}
 	}
+	.view-catalog {
+		h2, h3 {
+			margin-top: 0;
+		}
+	}
 	.view-categories {
 		.row-1st-level {
 			position: relative;
@@ -607,7 +622,8 @@
 				background: @color-green;
 				width: auto;
 				min-width: 300px;
-				left: 100%;
+				left: 272.5px;
+				left: calc(~"100% + 10px");
 				z-index: 3;
 				top: -30%;
 				padding: 10px 0;
@@ -616,7 +632,19 @@
 				-ms-border-radius: 3px;
 				-o-border-radius: 3px;
 				border-radius: 3px;
-
+				
+				&:after {
+					content: "";
+					display: block;
+					position: absolute;
+					left: -10px;
+					top: 12px;
+					width: 0;
+					height: 0;
+					border: 0 solid @color-green;
+					border-width: 20px 10px 20px 0px;
+					border-color: transparent @color-green;
+				}
 				.views-field-name-i18n {
 					a {
 						color: @color-white;
@@ -662,6 +690,18 @@
 		position: absolute;
 		top: 45px;
 		right: 0;
+		.form-text {
+			height: 40px;
+		}
+		.input-group-btn {
+			.btn {
+				height: 40px;
+				width: 51px;
+				.icon {
+					font-size: 13px;
+				}
+			}
+		}
 	}
 	.node-type-product {
 		h1 {
@@ -744,6 +784,7 @@
 			margin-top: 10px;		
 		}
 		.portfolio-views-wrapper {
+			margin-top: 20px;
 			.slick__slide {
 				.hidden-wrapper {
 					padding: 30px 30px 34px;
@@ -838,6 +879,9 @@
 		display: -webkit-flex;
 		display: -ms-flexbox;
 		display:         flex;
+	}
+	.page-catalog:not(.page-taxonomy) .page-header {
+		margin-bottom: 56px;
 	}
 }
 

@@ -131,3 +131,42 @@ function tnd_tax_filters_filters_form_submit($form, &$form_state) {
 function _tnd_tax_filters_ajax_callback_fields($form, $form_state) {
 	return $form['2nd_level'];
 }
+
+function tnd_tax_filters_preprocess_page(&$variables){
+	$path = request_uri();
+	$term = menu_get_object('taxonomy_term', 2);
+	if(isset($variables['node'])){
+		$node = $variables['node'];
+		if($node->type == 'protfolio') {
+			if($place = field_get_items('node', $node, 'field_place')){
+				$place = taxonomy_term_load($place[0]['tid']);
+		    $place = i18n_taxonomy_localize_terms($place);
+				$place = $place->name;
+			}
+			else {
+				$place = '';
+			}
+			$breadcrumbs = array();
+			$breadcrumbs[] = l('main', '/');
+			$breadcrumbs[] = l(t('portfolio'), '/portfolio');
+			$breadcrumbs[] = $place;
+			$breadcrumbs[] = $node->title;
+			drupal_set_breadcrumb($breadcrumbs);
+		}
+	}
+	elseif($term && $term->vocabulary_machine_name == 'categories') {
+		// if (module_exists('i18n_taxonomy')) { //To not break your site if module is not installed
+    $term = i18n_taxonomy_localize_terms($term);
+		$parent = taxonomy_get_parents($term->tid);
+		$breadcrumbs = array();
+		$breadcrumbs[] = l('main', '/');
+		$breadcrumbs[] = l(t('Catalog'), '/catalog');
+		if($parent && count($parent)) {
+			$parent = array_pop($parent);
+	    $parent = i18n_taxonomy_localize_terms($parent);
+			$breadcrumbs[] = l($parent->name, "taxonomy/term/$parent->tid");
+		}
+		$breadcrumbs[] = $term->name;
+		drupal_set_breadcrumb($breadcrumbs);
+	}
+}

@@ -90,7 +90,7 @@ unset($content['links']);
       <?php print render($title_suffix); ?>
       <?php if ($display_submitted): ?>
         <span class="post-date">
-          <span class="icon glyphicon glyphicon-calendar"></span>
+          <span class="icon icon-calendar"><svg viewBox="0 0 24 24"><use xlink:href="#marker-svg"></use></svg></span>
           <?php 
           $formatted_date = format_date($node->created, 'custom', 'j M Y');
           print $formatted_date; ?>
@@ -99,7 +99,7 @@ unset($content['links']);
         $place = field_get_items('node', $node, 'field_place');
         if($place){
           $place = taxonomy_term_load($place[0]['tid']);
-          print "<span class=\"place\"><span class=\"icon glyphicon glyphicon-map-marker\"></span>$place->name</span>";
+          print '<span class="place"><span class="icon icon-map-marker"><svg viewBox="0 0 512 512"><use xlink:href="#calendar-svg"></use></svg></span>'."$place->name</span>";
         }
         ?>
 

@@ -245,14 +245,16 @@ function basic_cart_additional_cart() {
   $cart = basic_cart_get_cart();
   $count = 0;
   $output = array();
+  $empty_class = 'cart-empty';
   if (!empty($cart)) {
     $count = count($cart);
     $form = drupal_get_form('basic_cart_cart_form');
     $form['#weight'] = 10;
     $output['form'] = $form;
+    $empty_class = '';
   }
 
-  $cart_btn = '<div class="cart-btn"><div class="cart-icon"></div>';
+  $cart_btn = "<div class=\"cart-btn $empty_class\"><div class=\"cart-icon\"></div>";
   $cart_btn .= '<div class="cart-btn-content"><span class="cart-count">' . $count . '</span>'. t('items') . '<span class="cart-arrow"></span></div>';
   $cart_btn .= '</div>';
   $output['btn'] = array(
@@ -261,7 +263,7 @@ function basic_cart_additional_cart() {
     '#weight' => 1,
     );
   $output[] = array(
-    '#markup' => '<div class="row"><div class="col-xs-8 col-sm-12 col-xs-offset-4 col-sm-offset-0 cart-inner-wrapper">',
+    '#markup' => '<div class="row"><div class="col-xs-8 col-sm-12 pull-right cart-inner-wrapper">',
     '#weight' => -100,
     );
   $output[] = array(
