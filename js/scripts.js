@@ -8,7 +8,9 @@
 		initOpensCart();
 		addQuantityButtons();
 		mainMenuInit();
-		ProductMasonry();
+		if($('.node-type-product').length) {
+			productMasonry();
+		}
 		
 		$('select').selectBox('destroy').selectBox({mobile: true});
 
@@ -27,6 +29,8 @@
 
 	$( document ).ajaxComplete(function() {
 		$('select').selectBox('destroy').selectBox({mobile: true});
+		initOpensCart();
+		addQuantityButtons();
 	});
 
 	$.fn.collapsibleMenu = function() {
@@ -87,6 +91,8 @@
 		btn = cart.find('.cart-btn'),
 		cartForm = cart.find('form');
 
+		btn.off('click');
+
 		$(document).on('click', '.cart-btn', function(event) {
 			event.preventDefault();
 			btn.toggleClass('opened');
@@ -100,14 +106,18 @@
 		inputs.each(function(index, el) {
 			// console.log($(el));
 			var $element = $(el);
-			$element.after('<span class="inp-up" data-source-id='+ $element.attr('id') +'>');
-			$element.before('<span class="inp-down" data-source-id='+ $element.attr('id') +'>');
+			if(!$element.prev('.inp-down').length){
+				$element.after('<span class="inp-up" data-source-id='+ $element.attr('id') +'>');
+				$element.before('<span class="inp-down" data-source-id='+ $element.attr('id') +'>');
+			}
 		});
+		$(document).off('click', '.inp-up');
 		$(document).on('click', '.inp-up', function(event) {
 			event.preventDefault();
 			var input = $('#'+$(event.target).attr('data-source-id'));
 			input.val(+input.val()+1);
 		});
+		$(document).off('click', '.inp-down');
 		$(document).on('click', '.inp-down', function(event) {
 			event.preventDefault();
 			var input = $('#'+$(event.target).attr('data-source-id'));
@@ -132,15 +142,22 @@
 			}
 		}
 	}
-	function ProductMasonry() {
-		var grid = '.panels-flexible-region-row-center_3',
+	function productMasonry() {
+		var $container = $('.panels-flexible-region-row-center_3'),
 			item = '.product-masonry-item';
 		// var grid = '.view-catalog',
 		// item = '.views-row';
-
-		var $mas = $(grid).masonry({
-			itemSelector: item,
-		});
+		$container.imagesLoaded(function () {
+          if ($container.hasClass('masonry-processed')) {
+            $container.masonry('reloadItems').masonry('layout');
+          }
+          else {
+            $container.once('masonry').masonry({itemSelector: item});
+          }
+        });
+		// var $mas = $(grid).masonry({
+		// 	itemSelector: item,
+		// });
 
 	}
 })(jQuery);

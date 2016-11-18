@@ -4,40 +4,49 @@
  * Implements hook_menu().
  */
 function basic_cart_additional_menu() {
-	$items = array();
+  $items = array();
 
-	$items['cart/reset'] = array(
-		'title' => 'Basic cart reset',
-   'description' => 'Basic cart reset',
-   'page callback' => 'basic_cart_additional_reset_cart',
-   'access arguments' => array('use basic cart'),
-   );
-	return $items;
-}
-
-/**
- * reset page callback
- */
-function basic_cart_additional_reset_cart() {
-	unset($_SESSION['basic_cart']['cart']);
-  $referer = $_SERVER["HTTP_REFERER"];
-  drupal_goto($referer);
+  $items['ajax-cart/add'] = array(
+    'description'       => 'Add to cart ajax url',
+    'page callback'     => 'basic_cart_additional_add_to_cart',
+    'delivery callback' => 'ajax_deliver',
+    'access arguments'  => array('use basic cart'),
+    'type'              => MENU_CALLBACK,
+    );
+  $items['ajax-cart/reset'] = array(
+    'description' => 'Ajax cart reset',
+    'page callback' => 'basic_cart_additional_reset_cart',
+    'delivery callback' => 'ajax_deliver',
+    'access arguments' => array('use basic cart'),
+    'type'              => MENU_CALLBACK,
+    );
+  $items['ajax-cart/remove'] = array(
+    'description' => 'Ajax cart remove',
+    'page callback' => 'basic_cart_additional_remove_cart',
+    'delivery callback' => 'ajax_deliver',
+    'access arguments' => array('use basic cart'),
+    'type'              => MENU_CALLBACK,
+    );
+  return $items;
 }
 
 /**
  * Implements hook_theme_registry_alter().
  */
 function basic_cart_additional_theme_registry_alter(&$theme_registry) {
-	if(isset($theme_registry['basic_cart_render_cart_element'])) {
-		$theme_registry['basic_cart_render_cart_element']['function'] = 'basic_cart_additional_theme_basic_cart_render_cart_element';
-	}
+  if(isset($theme_registry['basic_cart_render_cart_element'])) {  
+    $theme_registry['basic_cart_render_cart_element']['function'] = 'basic_cart_additional_theme_basic_cart_render_cart_element';
+  }
+  if(isset($theme_registry['basic_cart_add_to_cart'])) {
+    $theme_registry['basic_cart_add_to_cart']['function'] = 'basic_cart_additional_add_to_cart_button';
+  }
 }
 
 /**
  * form element theme
  */
 function basic_cart_additional_theme_basic_cart_render_cart_element($variables) {
-	// Element name and nid.
+  // Element name and nid.
   $name = $variables['form']['#name'];
   $nid = (int) str_replace(array('cartcontents[', ']'), '', $name);
   if (empty($nid)) {
@@ -50,7 +59,7 @@ function basic_cart_additional_theme_basic_cart_render_cart_element($variables) 
     'title' => t('Remove from cart'),
     'attributes' => array('class' => 'basic-cart-delete-image-image'),
     );
-  $delete_link = l(theme('image', $vars), 'cart/remove/' . $nid, array('html' => TRUE));
+  $delete_link = l(theme('image', $vars), 'ajax-cart/remove/' . $nid, array('html' => TRUE, 'attributes' => array('class' => array('use-ajax'))));
   // Getting the node for it's title and description.
   $node = basic_cart_get_cart($nid);
   // Node description.
@@ -79,17 +88,34 @@ function basic_cart_additional_theme_basic_cart_render_cart_element($variables) 
 }
 
 /**
+ * Theme function implementation.
+ */
+function basic_cart_additional_add_to_cart_button($vars) {
+  $path = str_replace('cart', 'ajax-cart', $vars['path']);
+  $css_class = $vars['css_class'];
+  $options = array(
+    'attributes' => array(
+      'class' => array($css_class, 'use-ajax')
+      )
+    );
+  drupal_add_js(drupal_get_path('module', 'basic_cart_additional') . '/basic_cart_js_command.js', array('scope' => 'footer'));
+  return '<div class="basic-cart-add-to-cart">' . l(t('Add to cart'), $path, $options) . '</div>';
+}
+
+/**
  * Implements hook_form_alter().
  */
 function basic_cart_additional_form_alter(&$form, &$form_state, $form_id) {
   // alter only basic_cart form
   if($form_id == 'basic_cart_cart_form') {
+    $form['#id'] = 'basic-cart-cart-form';
     // add reset button and weight
     $form['buttons']['reset'] = array(
       '#prefix' => '<div class="btn-reset-wrapper">',
       '#suffix' => '</div>',
-      '#type' => 'submit',
+      '#type' => 'button',
       '#value' => t('Reset'),
+      '#ajax' => array('path' => 'ajax-cart/reset'),
       '#weight' => 1,
       );
     // change button weight
@@ -185,26 +211,26 @@ function _basic_cart_additional_ajax_cb($form, $form_state) {
  * copy common callback and add new button handler
  */
 function _basic_cart_additional_cart_form_submit($form_id, $form_state) {
-	foreach ($form_state['values']['cartcontents'] as $nid => $value) {
-		$quantity = (int) $value;
-		if ($quantity > 0) {
-			$_SESSION['basic_cart']['cart'][$nid]->basic_cart_quantity = $quantity;
-		}
-	// If the quantity is zero, we just remove the node from the cart.
-		elseif ($quantity == 0) {
-			unset($_SESSION['basic_cart']['cart'][$nid]);
-		}
-	}
+  foreach ($form_state['values']['cartcontents'] as $nid => $value) {
+    $quantity = (int) $value;
+    if ($quantity > 0) {
+      $_SESSION['basic_cart']['cart'][$nid]->basic_cart_quantity = $quantity;
+    }
+  // If the quantity is zero, we just remove the node from the cart.
+    elseif ($quantity == 0) {
+      unset($_SESSION['basic_cart']['cart'][$nid]);
+    }
+  }
 
-	if (module_exists('basic_cart_order') && $form_state['values']['op'] == t('Checkout')) {
-		drupal_goto('checkout');
-	}
-	elseif ($form_state['values']['op'] == t('Reset')) {
-		drupal_goto('cart/reset');
-	}
-	else {
-		drupal_set_message(t('Shopping cart updated.'));
-	}
+  if (module_exists('basic_cart_order') && $form_state['values']['op'] == t('Checkout')) {
+    drupal_goto('checkout');
+  }
+  elseif ($form_state['values']['op'] == t('Reset')) {
+    drupal_goto('ajax-cart/reset');
+  }
+  else {
+    drupal_set_message(t('Shopping cart updated.'));
+  }
 }
 
 /**
@@ -226,7 +252,7 @@ function basic_cart_additional_block_view($delta = '') {
   switch ($delta) {
     case 'tnd_shopping_cart':
     if (user_access('use basic cart')) {
-      	// get common cart form
+        // get common cart form
       $form = basic_cart_additional_cart();
 
       $block['subject'] = t('Your cart');
@@ -290,4 +316,78 @@ function _basic_cart_additional_set_pleceholder_hide_title(&$item) {
       $item['und'][0]['value']['#title_display'] = 'invisible'; 
     }
   }
+}
+
+function basic_cart_additional_preprocess_field(&$variables) {  
+  $field_name = $variables['element']['#field_name'];  
+  // if ($field_name == 'field_example_field') {
+  //   // Your code here.
+  // }
+}
+
+/**
+ * add to cart page callback
+ */
+function basic_cart_additional_add_to_cart($nid = NULL, $quantity = 1) {
+  $nid = (int) $nid;
+  $quantity = (int) $quantity;
+  if ($nid > 0 && $quantity > 0) {
+    // If a node is added more times, just update the quantity.
+    $cart = basic_cart_get_cart();
+    if (!empty($cart) && in_array($nid, array_keys($cart))) {
+      // Clicked 2 times on add to cart button. Increment quantity.
+      $_SESSION['basic_cart']['cart'][$nid]->basic_cart_quantity += $quantity;
+    }
+    else {
+      $node = node_load($nid);
+      $node->basic_cart_quantity = $quantity;
+      // Adding description.
+      $body = field_get_items('node', $node, 'body');
+      $description = isset($body[0]['value']) ? check_plain(strip_tags($body[0]['value'])) : '';
+      $node->basic_cart_node_description = $description;
+      // Unit price.
+      $unit_price = field_get_items('node', $node, 'price');
+      $unit_price = isset($unit_price[0]['value']) ? check_plain(strip_tags($unit_price[0]['value'])) : 0;
+      $node->basic_cart_unit_price = $unit_price;
+      
+      // Storing in session.
+      $_SESSION['basic_cart']['cart'][$nid] = $node;
+    }
+  }
+
+  $block = module_invoke('basic_cart_additional', 'block_view', 'tnd_shopping_cart');
+  $commands = array();
+  $commands[] = ajax_command_html('#block-basic-cart-additional-tnd-shopping-cart', $block['content']);  
+  return array('#type' => 'ajax', '#commands' => $commands);
+}
+
+/**
+ * reset page callback
+ */
+function basic_cart_additional_reset_cart() {
+  unset($_SESSION['basic_cart']['cart']);
+  $block = module_invoke('basic_cart_additional', 'block_view', 'tnd_shopping_cart');
+  $commands = array();
+  $commands[] = ajax_command_html('#block-basic-cart-additional-tnd-shopping-cart', $block['content']);
+  $html = '<div class="cbox-status">'. 
+          '<h1>'. t('Thanks for your question') .'</h1>'.
+          '<p>'. t('Our manager will contact you soon how its posible.') . '</p>' .
+          '<div class="cbox-status-close-wrapper"><button id="cbox-status-close">'. t('Close') .'</button></div>'.
+          '</div>';
+  $commands[] = array(
+    'command' => 'open_inline_colorbox',
+    'html' => $html,
+    );
+  return array('#type' => 'ajax', '#commands' => $commands);
+}
+
+function basic_cart_additional_remove_cart($nid = NULL) {
+  $nid = (int) $nid;
+  if ($nid > 0) {
+    unset($_SESSION['basic_cart']['cart'][$nid]);
+  }
+  $block = module_invoke('basic_cart_additional', 'block_view', 'tnd_shopping_cart');
+  $commands = array();
+  $commands[] = ajax_command_html('#block-basic-cart-additional-tnd-shopping-cart', $block['content']);
+  return array('#type' => 'ajax', '#commands' => $commands);
 }

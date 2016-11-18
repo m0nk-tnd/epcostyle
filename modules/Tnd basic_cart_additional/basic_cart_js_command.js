@@ -8,4 +8,12 @@
 	    $(a).colorboxNode({'launch': true});
     }
   }
+  Drupal.ajax.prototype.commands.open_inline_colorbox = function(ajax, response, status) {
+    if(response.sleep){
+	    window.setTimeout( function(){$.colorbox({html: response.html});}, response.sleep );
+    }
+    else {
+	    $.colorbox({html: response.html});
+    }
+  }
 }(jQuery));
