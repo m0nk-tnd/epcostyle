@@ -206,7 +206,8 @@ p {
     -o-border-radius: 3px 0 0 3px;
     border-radius: 3px 0 0 3px;
   }
-  &:hover {
+  &:hover,
+  &:focus {
     color: @color-lighter-green;
     text-decoration: none;
   }
@@ -333,6 +334,7 @@ p {
 #block-multiblock-1 {
   #block-locale-language;
   margin: 0;
+  padding: 0 15px;
   ul {
     text-align: left;
     li {
@@ -447,7 +449,8 @@ p {
   &:before {
     background: @image-icons no-repeat 3px -160px;
   }
-  &:hover:before {
+  &:hover:before,
+  &:focus:before {
     background-position: -45px -160px;
   }
 }
@@ -474,7 +477,8 @@ p {
     -o-border-radius: 50%;
     border-radius: 50%;
   }
-  &:hover:after {
+  &:hover:after,
+  &:focus:after {
     background: @color-lighter-green;
     color: @color-white;
   }
@@ -1825,6 +1829,12 @@ p {
 }
 #block-views-main-slider-block {
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
 }
 #navbar.navbar-front {
   // background: transparent;
@@ -1863,9 +1873,12 @@ p {
     font-size: 36px;
     line-height: 40px;
     margin: 0;
+    text-transform: uppercase;
     color: @color-white;
   }
   .flex-control-paging {
+    margin-top: 42px;
+    position: static;
     text-align: right;
     font-size: 0;
     // bottom: -25px;
@@ -1898,7 +1911,9 @@ p {
   }
   .flex-direction-nav {
     float: right;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     .flex-nav-prev {
       display: none;
     }
@@ -2301,17 +2316,6 @@ p {
 
 // css
 
-
-
-#block-views-main-slider-block {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
-}
-
 // .row-height {
 //   display: table;
 //   table-layout: fixed;
@@ -2514,6 +2518,11 @@ p {
       font-weight: 600;
       padding: 0;
       text-transform: uppercase;
+      border: 0;
+      outline: none;
+      &:hover, &:focus{
+        color: @color-lighter-green;
+      }
     }
   }
   h2 {
@@ -2610,6 +2619,46 @@ p {
       font-family: Raleway;
       font-weight: 400;
       font-size: 14px;
+    }
+  }
+  .cbox-status {
+    padding: 0 15px;
+    h1 {
+      color: @color-white;
+      margin-top: 30px;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+    .cbox-status-close-wrapper {
+      button {
+        width: 100%;
+        color: @color-white;
+        background: @color-green;
+        margin-bottom: 40px;
+        border: 0;
+        outline: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        line-height: 40px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-family: Raleway;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        border-radius: 3px;
+        &:hover,
+        &:focus {
+          color: @color-lighter-green;
+        }
+        &:active {
+          background: @color-dark-green;
+        }
+      }
     }
   }
 }

@@ -99,7 +99,7 @@
   <div id="main-menu-wrapper">
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
       <div class="container">
-        <div class="row">
+        <div class="row middle-header-row">
           <div class="button-container visible-xs visible-sm">
             <div class="btn-wrapper visible-xs visible-sm pull-left">
               <button type="button" class="navbar-toggle visible-xs visible-sm" data-toggle="collapse" data-target=".navbar-collapse">

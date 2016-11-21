@@ -166,6 +166,11 @@ function basic_cart_additional_form_alter(&$form, &$form_state, $form_id) {
     $form['actions']['submit']['#submit'][] = '_basic_cart_additional_form_submit';
     $form['actions']['submit']['#value'] = t('Submit order');
   }
+  elseif($form_id == 'webform_client_form_642') {
+    // dpm($form);
+    $form['actions']['submit']['#ajax'] = array('callback' => '_basic_cart_additional_ask_form_submit');
+    // $form['#submit'][] = '_basic_cart_additional_ask_form_submit';
+  }
 }
 function checkout_form_process($form) {
   module_load_include('pages.inc', 'node');
@@ -174,12 +179,40 @@ function checkout_form_process($form) {
 
 function _basic_cart_additional_form_submit(&$form, &$form_state) {
   unset($form_state['redirect']);
-  $form_state['#cbox_commands']['after'][] = 
-    // ajax_command_alert('This alert message');
-  array(
-    'command' => 'open_colorbox',
-    'href' => '/checkout/thank-you',
-    'sleep' => 500
+  $html = '<div class="cbox-status">'. 
+  '<h1>'. t('Your order is sent') .'</h1>'.
+  '<p>'. t('Our manager will contact you soon how its posible.') . '</p>' .
+  '<div class="cbox-status-close-wrapper"><button id="cbox-status-close">'. t('Close') .'</button></div>'.
+  '</div>';
+  $form_state['#cbox_commands']['after'][] = array(
+    'command' => 'open_inline_colorbox',
+    'html' => $html,
+    'sleep' => 300
+    );
+}
+function _basic_cart_additional_ask_form_submit(&$form, &$form_state) {
+  $commands = array();
+  if(form_get_errors()) {
+    $errors = drupal_get_messages();
+    dpm($errors);
+    $commands[] = ajax_command_before('.webform-client-form-642', $errors);
+    $commands[] = ajax_command_alert('you have errors!');
+  }
+  else{
+    $html = '<div class="cbox-status">'. 
+    '<h1>'. t('Thanks for your question') .'</h1>'.
+    '<p>'. t('Our manager will contact you soon how its posible.') . '</p>' .
+    '<div class="cbox-status-close-wrapper"><button id="cbox-status-close">'. t('Close') .'</button></div>'.
+    '</div>';
+    $commands[] = array(
+      'command' => 'open_inline_colorbox',
+      'html' => $html,
+      'sleep' => 300
+      );
+  }
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
     );
 }
 
@@ -358,6 +391,16 @@ function basic_cart_additional_add_to_cart($nid = NULL, $quantity = 1) {
   $block = module_invoke('basic_cart_additional', 'block_view', 'tnd_shopping_cart');
   $commands = array();
   $commands[] = ajax_command_html('#block-basic-cart-additional-tnd-shopping-cart', $block['content']);  
+  $commands[] = ajax_command_html('#block-basic-cart-additional-tnd-shopping-cart', $block['content']);
+  $html = '<div class="cbox-status">'. 
+  '<h1>'. t('Product added to cart') .'</h1>'.
+  '<p>'. t('Click to cart for look options.') . '</p>' .
+  '<div class="cbox-status-close-wrapper"><button id="cbox-status-close">'. t('Close') .'</button></div>'.
+  '</div>';
+  $commands[] = array(
+    'command' => 'open_inline_colorbox',
+    'html' => $html,
+    );
   return array('#type' => 'ajax', '#commands' => $commands);
 }
 
@@ -370,10 +413,10 @@ function basic_cart_additional_reset_cart() {
   $commands = array();
   $commands[] = ajax_command_html('#block-basic-cart-additional-tnd-shopping-cart', $block['content']);
   $html = '<div class="cbox-status">'. 
-          '<h1>'. t('Thanks for your question') .'</h1>'.
-          '<p>'. t('Our manager will contact you soon how its posible.') . '</p>' .
-          '<div class="cbox-status-close-wrapper"><button id="cbox-status-close">'. t('Close') .'</button></div>'.
-          '</div>';
+  '<h1>'. t('Thanks for your question') .'</h1>'.
+  '<p>'. t('Our manager will contact you soon how its posible.') . '</p>' .
+  '<div class="cbox-status-close-wrapper"><button id="cbox-status-close">'. t('Close') .'</button></div>'.
+  '</div>';
   $commands[] = array(
     'command' => 'open_inline_colorbox',
     'html' => $html,
