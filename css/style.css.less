@@ -30,6 +30,13 @@ body {
   font-weight: 300;
   color: @color-text-main;
 }
+body.i18n-zh-hant,
+.i18n-zh-hant {
+  font-family: 'Microsoft JhengHei', Raleway !important;
+  * {
+    font-family: 'Microsoft JhengHei', Raleway !important;
+  }
+}
 input:focus,
 select:focus,
 textarea:focus,
@@ -282,7 +289,7 @@ p {
   .social-icon {
     list-style: none;
     display: inline-block;
-    margin-left: 6px;
+    margin-left: 6.5px;
     &:first-child {
       margin-left: 0;
     }
@@ -300,6 +307,9 @@ p {
       -ms-border-radius: 2px;
       -o-border-radius: 2px;
       border-radius: 2px;
+      &:hover {
+        border-color: @color-lighter-green;
+      }
     }
     &.social-in a {
       background-position: -4px 2px;
@@ -1464,6 +1474,11 @@ p {
     overflow: hidden;
     background: @color-bg-grey;
   }
+  .panels-flexible-column-last {
+    width: 100%;
+    float: none;
+    overflow: hidden;
+  }
   .flexslider {
     background: none;
     border: none;
@@ -1835,6 +1850,7 @@ p {
   left: 0;
   right: 0;
   z-index: -1;
+  background: @color-green;
 }
 #navbar.navbar-front {
   // background: transparent;
@@ -2092,13 +2108,13 @@ p {
         border-radius: 50%;
         background: @image-icons -156px -30px no-repeat;
         &:hover {
-          background-position: -78px -30px;
+          background-position: -39px -30px;
         }
         &.slick-prev {
           background-position: -159px -62px;
           margin-right: 7px;
           &:hover {
-            background-position: -81px -62px;
+            background-position: -42px -62px;
           }
         }
       }
@@ -2899,6 +2915,9 @@ p {
     }
   }
 }
+
+/***********************************/
+
 
 .row-eq-height {
   display: -webkit-box;

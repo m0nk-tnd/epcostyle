@@ -114,7 +114,7 @@ function basic_cart_additional_form_alter(&$form, &$form_state, $form_id) {
       '#prefix' => '<div class="btn-reset-wrapper">',
       '#suffix' => '</div>',
       '#type' => 'button',
-      '#value' => t('Reset'),
+      '#value' => t('Reset all items'),
       '#ajax' => array('path' => 'ajax-cart/reset'),
       '#weight' => 1,
       );
@@ -193,10 +193,9 @@ function _basic_cart_additional_form_submit(&$form, &$form_state) {
 function _basic_cart_additional_ask_form_submit(&$form, &$form_state) {
   $commands = array();
   if(form_get_errors()) {
-    $errors = drupal_get_messages();
-    dpm($errors);
-    $commands[] = ajax_command_before('.webform-client-form-642', $errors);
-    $commands[] = ajax_command_alert('you have errors!');
+    $commands[] = ajax_command_remove('#colorbox .alert');
+    $commands[] = ajax_command_before('#webform-client-form-642', theme('status_messages'));
+    $commands[] = ajax_command_replace('#webform-client-form-642', drupal_render($form));
   }
   else{
     $html = '<div class="cbox-status">'. 
@@ -258,7 +257,7 @@ function _basic_cart_additional_cart_form_submit($form_id, $form_state) {
   if (module_exists('basic_cart_order') && $form_state['values']['op'] == t('Checkout')) {
     drupal_goto('checkout');
   }
-  elseif ($form_state['values']['op'] == t('Reset')) {
+  elseif ($form_state['values']['op'] == t('Reset all items')) {
     drupal_goto('ajax-cart/reset');
   }
   else {

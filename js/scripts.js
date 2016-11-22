@@ -16,6 +16,10 @@
 		else if($('.front').length) {
 			calculateMainScreenPaddings();
 		}
+		$('.scrolldown').on('click', function() {
+			$('body').animate({scrollTop: $('#main-content').offset().top}, '500');
+			return false;
+		});
 		
 		$('select').selectBox('destroy').selectBox({mobile: true});
 
@@ -158,7 +162,7 @@
 		}
 	}
 	function productMasonry() {
-		var $container = $('.panels-flexible-region-row-center_3'),
+		var $container = $('.panels-flexible-region-row-center_3 > .inside'),
 		item = '.product-masonry-item';
 		// var grid = '.view-catalog',
 		// item = '.views-row';

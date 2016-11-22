@@ -90,7 +90,7 @@ unset($content['links']);
       <?php print render($title_suffix); ?>
       <?php if ($display_submitted): ?>
         <span class="post-date">
-          <span class="icon icon-calendar"><svg viewBox="0 0 24 24"><use xlink:href="#marker-svg"></use></svg></span>
+          <span class="icon icon-map-marker"><svg viewBox="0 0 512 512"><use xlink:href="#calendar-svg"></use></svg></span>
           <?php 
           $formatted_date = format_date($node->created, 'custom', 'j M Y');
           print $formatted_date; ?>

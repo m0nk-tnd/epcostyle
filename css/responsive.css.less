@@ -748,6 +748,32 @@
 		}
 	}
 	.front {
+		.social-icons {
+			.social-icon {
+				a{
+					border-color: @color-white;
+					&:hover {
+						border-color: @color-lighter-green;
+					}
+				}
+			}
+		}
+		#block-basic-cart-additional-tnd-shopping-cart {
+			.cart-btn {
+				border-color: @color-white;
+				.cart-icon {
+					border-color: @color-white;
+				}
+				&:hover ,
+				&:focus ,
+				&.opened{
+					border-color: @color-lighter-green;
+					.cart-icon {
+						border-color: @color-lighter-green;
+					}	
+				}
+			}
+		}
 		.about-row {
 			h1 {
 				margin-top: 90px;
